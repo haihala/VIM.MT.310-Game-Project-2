@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tile.png-70d4113d4aba0439883a8500fa5275c4.stex"
+path="res://.import/Player_Walk1.png-5574891b2cb6e69a3d9a065cc7f6a242.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tile.png"
-dest_files=[ "res://.import/Tile.png-70d4113d4aba0439883a8500fa5275c4.stex" ]
+source_file="res://course_assets/Sprites/Player_Walk1.png"
+dest_files=[ "res://.import/Player_Walk1.png-5574891b2cb6e69a3d9a065cc7f6a242.stex" ]
 
 [params]
 
