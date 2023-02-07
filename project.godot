@@ -13,6 +13,15 @@ config_version=4
 config/name="GodotTutorial"
 run/main_scene="res://scenes/MainScene.tscn"
 
+[display]
+
+window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+
+[global]
+
+stretch=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
