@@ -26,9 +26,16 @@ var gravity : float = 2*jump_height_pixels / pow(time_to_apex, 2)
 var jump_impulse : float = (gravity * time_to_apex) + (jump_height_pixels / time_to_apex)
 
 onready var sprite = $AnimatedSprite
-onready var particles = $LandingParticles
+onready var landing_particles = $LandingParticles
+onready var running_particles = $RunningParticles
 onready var coin_pickup_player = $CoinPickupPlayer
+onready var footstep_player = $FootstepPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
+
+var footsteps = []
+func _ready():
+	for i in range(10):
+		footsteps.append(load("res://assets/kenney_rgpaudio/footstep0%s.ogg" % i))
 
 func _physics_process (delta):
 	handle_movement(delta)
@@ -74,10 +81,10 @@ func handle_landing():
 		if not grounded:
 			# Just landed
 			desired_animation = "land"
-			if not particles.emitting:
-				particles.restart()
+			if not landing_particles.emitting:
+				landing_particles.restart()
 			# Hold the animation for a while, idle won't take over unless grounded is true
-			yield(get_tree().create_timer(0.2), "timeout")
+			yield(get_tree().create_timer(0.1), "timeout")
 			grounded = true
 	else:
 		grounded = false
@@ -88,10 +95,12 @@ func jump_animation():
 	yield(get_tree().create_timer(time_to_apex/2), "timeout")
 	desired_animation = "fall"
 
-func _process(delta):
-	update_visual()
+func _process(_delta):
+	update_sprite()
+	update_particles()
+	update_footsteps()
 
-func update_visual():
+func update_sprite():
 	# sprite direction
 	if vel.x < 0:
 		sprite.flip_h = true
@@ -111,13 +120,26 @@ func update_visual():
 	if sprite.animation != desired_animation:
 		sprite.play(desired_animation)
 
+func update_particles():
+	var should_emit = desired_animation == "run"
+	running_particles.emitting = should_emit
+
+func update_footsteps():
+	if is_on_floor() and vel.x != 0:
+		if not footstep_player.playing:
+			randomize()
+			footstep_player.stream = footsteps[randi() % len(footsteps)]
+			footstep_player.play()
+	else:
+		footstep_player.stop()
+
 func die ():
 	# Can't die twice
 	if not dead:
 		dead = true
 		# Wait some time so the animation plays out
-		yield(get_tree().create_timer(5), "timeout")
-		get_tree().reload_current_scene()
+		yield(get_tree().create_timer(4), "timeout")
+		var _reload_output = get_tree().reload_current_scene()
 
 
 # called when we run into a coin

@@ -108,7 +108,7 @@ animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": false,
 "name": "die",
-"speed": 4.0
+"speed": 2.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
