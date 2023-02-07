@@ -26,7 +26,8 @@ var gravity : float = 2*jump_height_pixels / pow(time_to_apex, 2)
 var jump_impulse : float = (gravity * time_to_apex) + (jump_height_pixels / time_to_apex)
 
 onready var sprite = $AnimatedSprite
-onready var particles = $Particles2D
+onready var particles = $LandingParticles
+onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 
 func _physics_process (delta):
@@ -122,4 +123,5 @@ func die ():
 # called when we run into a coin
 func collect_coin (value):
 	score += value
+	coin_pickup_player.play()
 	ui.set_score_text(score)

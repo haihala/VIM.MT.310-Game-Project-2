@@ -21,6 +21,9 @@ moveDist = 448
 [node name="Coin" parent="." instance=ExtResource( 4 )]
 position = Vector2( -576, -63 )
 
+[node name="Coin2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 92, -88 )
+
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -7, -88 )
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://assets/kenney_rgpaudio/handleCoins.ogg" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
@@ -37,7 +38,7 @@ offset = Vector2( 7, 0 )
 position = Vector2( 0, 5 )
 shape = SubResource( 1 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="LandingParticles" type="Particles2D" parent="."]
 position = Vector2( 0, 25 )
 emitting = false
 lifetime = 0.5
@@ -45,3 +46,6 @@ one_shot = true
 preprocess = 0.2
 local_coords = false
 process_material = SubResource( 4 )
+
+[node name="CoinPickupPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/metalPot3.ogg-5f8210cad6cfe2211827beb3deaa4c39.oggstr"
+
+[deps]
+
+source_file="res://assets/kenney_rgpaudio/metalPot3.ogg"
+dest_files=[ "res://.import/metalPot3.ogg-5f8210cad6cfe2211827beb3deaa4c39.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

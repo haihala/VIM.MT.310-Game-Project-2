@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/bookOpen.ogg-da4b09f12ef1f624fe9d28d870217abd.oggstr"
+
+[deps]
+
+source_file="res://assets/kenney_rgpaudio/bookOpen.ogg"
+dest_files=[ "res://.import/bookOpen.ogg-da4b09f12ef1f624fe9d28d870217abd.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
