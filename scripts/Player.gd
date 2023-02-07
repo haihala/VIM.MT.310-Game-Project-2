@@ -4,10 +4,9 @@ extends KinematicBody2D
 var score : int = 0
 # physics
 var speed : int = 200
-var jumpForce : int = 600
+var jump_force : int = 600
 var gravity : int = 800
 var vel : Vector2 = Vector2()
-var grounded : bool = false
 var desired_animation : String = "idle"
 
 onready var sprite = $AnimatedSprite
@@ -29,7 +28,7 @@ func _physics_process (delta):
 	vel.y += gravity * delta
 	# jump input
 	if Input.is_action_pressed("jump") and is_on_floor():
-		vel.y -= jumpForce
+		vel.y -= jump_force
 
 	# sprite direction
 	if vel.x < 0:
@@ -37,12 +36,13 @@ func _physics_process (delta):
 	elif vel.x > 0:
 		sprite.flip_h = false
 
-	if not grounded:
+	if not is_on_floor():
 		desired_animation = "jump"
 	elif abs(vel.x) > 0:
 		desired_animation = "run"
 	else:
 		desired_animation = "idle"
+	
 	
 	if sprite.animation != desired_animation:
 		sprite.play(desired_animation)

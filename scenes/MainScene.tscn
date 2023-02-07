@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/Tile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=4]
@@ -10,52 +10,11 @@
 [node name="MainScene" type="Node2D"]
 position = Vector2( 871, 424 )
 
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+tile_data = PoolIntArray( -458758, 0, 0, -458757, 0, 2, -393231, 0, 0, -393230, 0, 2, -393224, 0, 0, -393223, 0, 1, -393222, 0, 65543, -393221, 0, 65542, -393220, 0, 2, -393218, 0, 0, -393217, 0, 2, -327698, 0, 0, -327697, 0, 1, -327696, 0, 1, -327695, 0, 65543, -327694, 0, 65542, -327693, 0, 1, -327692, 0, 2, -327689, 0, 0, -327688, 0, 65543, -327687, 0, 65537, -327686, 0, 65537, -327685, 0, 65537, -327684, 0, 65542, -327683, 0, 1, -327682, 0, 65543, -327681, 0, 65542, -393216, 0, 2, -262163, 0, 0, -262162, 0, 65543, -262161, 0, 65537, -262160, 0, 65537, -262159, 0, 65537, -262158, 0, 65537, -262157, 0, 65537, -262156, 0, 65542, -262155, 0, 1, -262154, 0, 1, -262153, 0, 65543, -262152, 0, 65537, -262151, 0, 65537, -262150, 0, 65537, -262149, 0, 65537, -262148, 0, 65537, -262147, 0, 65537, -262146, 0, 65537, -262145, 0, 65537, -327680, 0, 65538, -196627, 0, 65536, -196626, 0, 65537, -196625, 0, 65537, -196624, 0, 65537, -196623, 0, 65537, -196622, 0, 65537, -196621, 0, 65537, -196620, 0, 65537, -196619, 0, 65537, -196618, 0, 65537, -196617, 0, 65537, -196616, 0, 65537, -196615, 0, 65537, -196614, 0, 65537, -196613, 0, 65537, -196612, 0, 65537, -196611, 0, 65537, -196610, 0, 65537, -196609, 0, 65537, -262144, 0, 65538, -131091, 0, 65536, -131090, 0, 65537, -131089, 0, 65537, -131088, 0, 65537, -131087, 0, 65537, -131086, 0, 65537, -131085, 0, 65537, -131084, 0, 65537, -131083, 0, 65537, -131082, 0, 65537, -131081, 0, 65537, -131080, 0, 65537, -131079, 0, 65537, -131078, 0, 65537, -131077, 0, 65537, -131076, 0, 65537, -131075, 0, 65537, -131074, 0, 6, -131073, 0, 131073, -196608, 0, 131074, -65555, 0, 131072, -65554, 0, 131073, -65553, 0, 7, -65552, 0, 65537, -65551, 0, 65537, -65550, 0, 65537, -65549, 0, 65537, -65548, 0, 65537, -65547, 0, 65537, -65546, 0, 65537, -65545, 0, 65537, -65544, 0, 65537, -65543, 0, 65537, -65542, 0, 65537, -65541, 0, 65537, -65540, 0, 65537, -65539, 0, 65537, -65538, 0, 65538, -65537, 1, 0, -131072, 1, 2, -19, 1, 0, -18, 1, 2, -17, 0, 65536, -16, 0, 65537, -15, 0, 65537, -14, 0, 65537, -13, 0, 65537, -12, 0, 65537, -11, 0, 65537, -10, 0, 65537, -9, 0, 65537, -8, 0, 65537, -7, 0, 65537, -6, 0, 65537, -5, 0, 65537, -4, 0, 65537, -3, 0, 65537, -2, 0, 65538, -1, 1, 65536, -65536, 1, 65538, 65517, 1, 65536, 65518, 1, 65538, 65519, 0, 131072, 65520, 0, 131073, 65521, 0, 131073, 65522, 0, 131073, 65523, 0, 131073, 65524, 0, 131073, 65525, 0, 131073, 65526, 0, 131073, 65527, 0, 131073, 65528, 0, 131073, 65529, 0, 131073, 65530, 0, 131073, 65531, 0, 131073, 65532, 0, 131073, 65533, 0, 131073, 65534, 0, 131074, 65535, 1, 65536, 0, 1, 65538, 131053, 1, 65536, 131054, 1, 65542, 131055, 1, 1, 131056, 1, 1, 131057, 1, 1, 131058, 1, 1, 131059, 1, 1, 131060, 1, 1, 131061, 1, 1, 131062, 1, 1, 131063, 1, 1, 131064, 1, 1, 131065, 1, 1, 131066, 1, 1, 131067, 1, 1, 131068, 1, 1, 131069, 1, 1, 131070, 1, 1, 131071, 1, 65543, 65536, 1, 65538, 196589, 1, 131072, 196590, 1, 131073, 196591, 1, 131073, 196592, 1, 131073, 196593, 1, 131073, 196594, 1, 131073, 196595, 1, 131073, 196596, 1, 131073, 196597, 1, 131073, 196598, 1, 131073, 196599, 1, 131073, 196600, 1, 131073, 196601, 1, 131073, 196602, 1, 131073, 196603, 1, 131073, 196604, 1, 131073, 196605, 1, 131073, 196606, 1, 131073, 196607, 1, 131073, 131072, 1, 131074 )
+
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -7, -88 )
-
-[node name="Tiles" type="Node" parent="."]
-
-[node name="Tile" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 928, 416 )
-
-[node name="Tile4" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 800, 480 )
-
-[node name="Tile2" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 864, 416 )
-
-[node name="Tile3" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 992, 416 )
-
-[node name="Tile5" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 736, 480 )
-
-[node name="Tile6" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 672, 480 )
-
-[node name="Tile7" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 608, 480 )
-
-[node name="Tile8" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 544, 480 )
-
-[node name="Tile9" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 480, 480 )
-
-[node name="Tile10" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 416, 480 )
-
-[node name="Tile11" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 352, 480 )
-
-[node name="Tile12" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 288, 480 )
-
-[node name="Tile13" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 288, 416 )
-
-[node name="Tile14" parent="Tiles" instance=ExtResource( 1 )]
-position = Vector2( 864, 480 )
 
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 position = Vector2( -519, -8 )
@@ -63,7 +22,7 @@ speed = 500
 moveDist = 448
 
 [node name="Coin" parent="." instance=ExtResource( 4 )]
-position = Vector2( -583, -73 )
+position = Vector2( -576, -63 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( -239, -112 )
@@ -77,3 +36,6 @@ script = ExtResource( 6 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 3 )]
+__meta__ = {
+"_edit_lock_": true
+}
