@@ -26,6 +26,7 @@ var gravity : float = 2*jump_height_pixels / pow(time_to_apex, 2)
 var jump_impulse : float = (gravity * time_to_apex) + (jump_height_pixels / time_to_apex)
 
 onready var sprite = $AnimatedSprite
+onready var particles = $Particles2D
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 
 func _physics_process (delta):
@@ -57,7 +58,6 @@ func handle_movement(delta):
 	vel.x += (delta_x * influence)
 	
 	# Friction
-	print(vel.x)
 	if abs(vel.x) < friction:
 		vel.x = 0
 	else:
@@ -73,6 +73,8 @@ func handle_landing():
 		if not grounded:
 			# Just landed
 			desired_animation = "land"
+			if not particles.emitting:
+				particles.restart()
 			# Hold the animation for a while, idle won't take over unless grounded is true
 			yield(get_tree().create_timer(0.2), "timeout")
 			grounded = true
