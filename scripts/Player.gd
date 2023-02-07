@@ -101,13 +101,8 @@ func _process(_delta):
 	update_footsteps()
 
 func update_sprite():
-	# sprite direction
-	if vel.x < 0:
-		sprite.flip_h = true
-		sprite.offset.x = -abs(sprite.offset.x)
-	elif vel.x > 0:
-		sprite.flip_h = false
-		sprite.offset.x = abs(sprite.offset.x)
+	if abs(vel.x) > 0:
+		Utils.flip_sprite(sprite, vel.x < 0)
 
 	if dead:
 		desired_animation = "die"
