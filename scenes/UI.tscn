@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://course_assets/Sprites/Coin.png" type="Texture" id=1]
-[ext_resource path="res://course_assets/Font/new_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/course/Sprites/Coin.png" type="Texture" id=1]
+[ext_resource path="res://assets/course/Font/new_dynamicfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scripts/UI.gd" type="Script" id=3]
 
 
