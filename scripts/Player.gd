@@ -8,8 +8,9 @@ var jumpForce : int = 600
 var gravity : int = 800
 var vel : Vector2 = Vector2()
 var grounded : bool = false
+var desired_animation : String = "idle"
 
-onready var sprite = $Sprite
+onready var sprite = $AnimatedSprite
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 
 func _physics_process (delta):
@@ -35,6 +36,17 @@ func _physics_process (delta):
 		sprite.flip_h = true
 	elif vel.x > 0:
 		sprite.flip_h = false
+
+	if not grounded:
+		desired_animation = "jump"
+	elif abs(vel.x) > 0:
+		desired_animation = "run"
+	else:
+		desired_animation = "idle"
+	
+	if sprite.animation != desired_animation:
+		sprite.play(desired_animation)
+	
 
 func die ():
 	get_tree().reload_current_scene()
