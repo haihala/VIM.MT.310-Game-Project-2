@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://assets/kenney_rgpaudio/handleCoins.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scripts/utils/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://scripts/player/PlayerState.gd" type="Script" id=5]
+[ext_resource path="res://scripts/player/LandState.gd" type="Script" id=6]
+[ext_resource path="res://scripts/player/RunState.gd" type="Script" id=7]
+[ext_resource path="res://scripts/player/FootstepPlayer.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
@@ -43,6 +48,33 @@ color = Color( 0.819608, 0.819608, 0.819608, 1 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation = "idle"
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+animation = "run"
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation = "jump"
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation = "fall"
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+animation = "land"
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation = "die"
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
@@ -76,3 +108,4 @@ process_material = SubResource( 5 )
 stream = ExtResource( 3 )
 
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 8 )

@@ -1,4 +1,4 @@
-class_name Utils
+class_name SpriteUtils
 
 static func flip_sprite(sprite, flipped):
 	if sprite.flip_h != flipped:

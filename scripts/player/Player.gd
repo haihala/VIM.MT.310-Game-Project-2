@@ -1,8 +1,6 @@
 extends KinematicBody2D
 
 var score : int = 0
-var dead : bool = false
-var desired_animation : String = ""
 var grounded : bool = false
 
 # Movement
@@ -25,28 +23,26 @@ var jump_height_pixels = jump_height * 16;	# Tiles are 32 by 32, but for some re
 var gravity : float = 2*jump_height_pixels / pow(time_to_apex, 2)
 var jump_impulse : float = (gravity * time_to_apex) + (jump_height_pixels / time_to_apex)
 
+onready var state_machine = $StateMachine
 onready var sprite = $AnimatedSprite
-onready var landing_particles = $LandingParticles
-onready var running_particles = $RunningParticles
 onready var coin_pickup_player = $CoinPickupPlayer
-onready var footstep_player = $FootstepPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 
-var footsteps = []
 func _ready():
-	for i in range(10):
-		footsteps.append(load("res://assets/kenney_rgpaudio/footstep0%s.ogg" % i))
+	state_machine.push($StateMachine/Idle)
 
 func _physics_process (delta):
-	handle_movement(delta)
 	handle_landing()
+	handle_falling()
+	handle_movement(delta)
+	update_sprite()
 
 func handle_movement(delta):
 	var influence = 0
 	var friction = speed	# Default to a high number in case the player dies
 	var delta_x = 0
 	
-	if not dead:
+	if can_move():
 		if Input.is_action_pressed("move_left"):
 			delta_x -= 1
 		if Input.is_action_pressed("move_right"):
@@ -54,8 +50,8 @@ func handle_movement(delta):
 		
 		if is_on_floor():
 			if Input.is_action_pressed("jump"):
+				state_machine.push($StateMachine/Jump)
 				vel.y -= jump_impulse
-				jump_animation()
 			influence = ground_speed_influence
 			friction = ground_friction
 		else:
@@ -77,63 +73,48 @@ func handle_movement(delta):
 	vel = move_and_slide(vel, Vector2.UP)
 
 func handle_landing():
-	if is_on_floor():
-		if not grounded:
-			# Just landed
-			desired_animation = "land"
-			if not landing_particles.emitting:
-				landing_particles.restart()
-			# Hold the animation for a while, idle won't take over unless grounded is true
-			yield(get_tree().create_timer(0.1), "timeout")
-			grounded = true
-	else:
+	if is_on_floor() and not grounded:
+		# Just landed
+		state_machine.setup_stack([$StateMachine/Idle, $StateMachine/Land])
+		grounded = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		state_machine.pop()
+
+func handle_falling():
+	if not is_on_floor() and grounded:
+		# Just left the ground
 		grounded = false
-
-func jump_animation():
-	desired_animation = "jump"
-	# Wait for half the time it gets to get to the apex
-	yield(get_tree().create_timer(time_to_apex/2), "timeout")
-	desired_animation = "fall"
-
-func _process(_delta):
-	update_sprite()
-	update_particles()
-	update_footsteps()
+		yield(get_tree().create_timer(0.1), "timeout")
+		state_machine.push($StateMachine/Fall)
 
 func update_sprite():
 	if abs(vel.x) > 0:
-		Utils.flip_sprite(sprite, vel.x < 0)
+		SpriteUtils.flip_sprite(sprite, vel.x < 0)
 
-	if dead:
-		desired_animation = "die"
-	elif grounded:
+	if is_on_floor():
+		var currently_running = state_machine.active_state() == $StateMachine/Run;
 		if abs(vel.x) > 0:
-			desired_animation = "run"
-		else:
-			desired_animation = "idle"
+			if state_machine.active_state() == $StateMachine/Idle:
+				state_machine.push($StateMachine/Run)
 
-	if sprite.animation != desired_animation:
-		sprite.play(desired_animation)
+		elif currently_running:
+			state_machine.pop()
 
-func update_particles():
-	var should_emit = desired_animation == "run"
-	running_particles.emitting = should_emit
+func can_move():
+	var mid_landing = state_machine.active_state() == $StateMachine/Die
+	return not (is_dead() or mid_landing)
 
-func update_footsteps():
-	if is_on_floor() and vel.x != 0:
-		if not footstep_player.playing:
-			randomize()
-			footstep_player.stream = footsteps[randi() % len(footsteps)]
-			footstep_player.play()
-	else:
-		footstep_player.stop()
+func is_dead():
+	return state_machine.active_state() == $StateMachine/Die
 
 func die ():
 	# Can't die twice
-	if not dead:
-		dead = true
+	if not is_dead():
+		state_machine.push($StateMachine/Die)
+		state_machine.locked = true
 		# Wait some time so the animation plays out
 		yield(get_tree().create_timer(4), "timeout")
+		# There is a warning if the output is not collected to a variable
 		var _reload_output = get_tree().reload_current_scene()
 
 
@@ -142,3 +123,4 @@ func collect_coin (value):
 	score += value
 	coin_pickup_player.play()
 	ui.set_score_text(score)
+
