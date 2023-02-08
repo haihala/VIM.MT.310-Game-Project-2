@@ -29,7 +29,7 @@ onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 
 func _ready():
-	state_machine.push($StateMachine/Idle)
+	state_machine.set_state($StateMachine/Idle)
 
 func _physics_process (delta):
 	handle_landing()
@@ -52,7 +52,7 @@ func handle_movement(delta):
 
 		if is_on_floor():
 			if Input.is_action_pressed("jump"):
-				state_machine.push($StateMachine/Jump)
+				state_machine.set_state($StateMachine/Jump)
 				vel.y -= jump_impulse
 			influence = ground_speed_influence
 			friction = ground_friction
@@ -77,25 +77,25 @@ func handle_movement(delta):
 func handle_landing():
 	if is_on_floor() and not grounded:
 		# Just landed
-		state_machine.setup_stack([$StateMachine/Idle, $StateMachine/Land])
+		state_machine.set_state($StateMachine/Land)
 		grounded = true
 		yield(get_tree().create_timer(0.1), "timeout")
-		state_machine.pop()
+		state_machine.set_state($StateMachine/Idle)
 
 func handle_falling():
 	if not is_on_floor() and grounded:
 		# Just left the ground
 		grounded = false
 		yield(get_tree().create_timer(0.1), "timeout")
-		state_machine.push($StateMachine/Fall)
+		state_machine.set_state($StateMachine/Fall)
 
 func handle_running(direction):
 	if is_on_floor():
-		if direction != 0 and state_machine.active_state() == $StateMachine/Idle:
-			state_machine.push($StateMachine/Run)
+		if direction != 0 and state_machine.current == $StateMachine/Idle:
+			state_machine.set_state($StateMachine/Run)
 
-		if direction == 0 and state_machine.active_state() == $StateMachine/Run:
-			state_machine.pop()
+		if direction == 0 and state_machine.current == $StateMachine/Run:
+			state_machine.set_state($StateMachine/Idle)
 
 func flip_sprite():
 	if abs(vel.x) > 0:
@@ -103,16 +103,16 @@ func flip_sprite():
 
 
 func can_move():
-	var mid_landing = state_machine.active_state() == $StateMachine/Die
+	var mid_landing = state_machine.current == $StateMachine/Die
 	return not (is_dead() or mid_landing)
 
 func is_dead():
-	return state_machine.active_state() == $StateMachine/Die
+	return state_machine.current == $StateMachine/Die
 
 func die ():
 	# Can't die twice
 	if not is_dead():
-		state_machine.push($StateMachine/Die)
+		state_machine.set_state($StateMachine/Die)
 		state_machine.locked = true
 		# Wait some time so the animation plays out
 		yield(get_tree().create_timer(4), "timeout")
