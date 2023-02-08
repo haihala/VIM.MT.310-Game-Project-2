@@ -35,7 +35,7 @@ func _physics_process (delta):
 	handle_landing()
 	handle_falling()
 	handle_movement(delta)
-	update_sprite()
+	flip_sprite()
 
 func handle_movement(delta):
 	var influence = 0
@@ -47,7 +47,9 @@ func handle_movement(delta):
 			delta_x -= 1
 		if Input.is_action_pressed("move_right"):
 			delta_x += 1
-		
+
+		handle_running(delta_x)
+
 		if is_on_floor():
 			if Input.is_action_pressed("jump"):
 				state_machine.push($StateMachine/Jump)
@@ -87,18 +89,18 @@ func handle_falling():
 		yield(get_tree().create_timer(0.1), "timeout")
 		state_machine.push($StateMachine/Fall)
 
-func update_sprite():
+func handle_running(direction):
+	if is_on_floor():
+		if direction != 0 and state_machine.active_state() == $StateMachine/Idle:
+			state_machine.push($StateMachine/Run)
+
+		if direction == 0 and state_machine.active_state() == $StateMachine/Run:
+			state_machine.pop()
+
+func flip_sprite():
 	if abs(vel.x) > 0:
 		SpriteUtils.flip_sprite(sprite, vel.x < 0)
 
-	if is_on_floor():
-		var currently_running = state_machine.active_state() == $StateMachine/Run;
-		if abs(vel.x) > 0:
-			if state_machine.active_state() == $StateMachine/Idle:
-				state_machine.push($StateMachine/Run)
-
-		elif currently_running:
-			state_machine.pop()
 
 func can_move():
 	var mid_landing = state_machine.active_state() == $StateMachine/Die
