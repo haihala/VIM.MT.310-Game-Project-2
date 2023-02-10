@@ -28,8 +28,9 @@ position = Vector2( -498, -11 )
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -7, -88 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -239, -112 )
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 0, -150 )
+rotating = true
 current = true
 drag_margin_left = 0.0
 drag_margin_top = 0.0

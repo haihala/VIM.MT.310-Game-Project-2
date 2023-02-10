@@ -16,6 +16,7 @@ onready var sprite = $AnimatedSprite
 onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 onready var health_bar = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
+onready var camera = get_node("/root/MainScene/Camera")
 
 var state_after_animation
 
@@ -73,6 +74,7 @@ func handle_landing():
 	if is_on_floor() and not grounded:
 		# Just landed
 		state_machine.set_state($StateMachine/Land)
+		camera.shake(2)
 		grounded = true
 		state_after_animation = $StateMachine/Idle
 
@@ -128,6 +130,7 @@ func take_damage():
 	if health > 0:
 		health -= 1
 		health_bar.update_hearts(health)
+		camera.shake()
 
 	if health > 0:
 		state_machine.set_state($StateMachine/Hit)
