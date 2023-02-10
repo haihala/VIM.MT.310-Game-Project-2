@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://scripts/player/RunState.gd" type="Script" id=7]
 [ext_resource path="res://scripts/player/FootstepPlayer.gd" type="Script" id=8]
 [ext_resource path="res://assets/kenney_rgpaudio/footstep00.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scripts/player/AttackState.gd" type="Script" id=10]
+[ext_resource path="res://scripts/Hitbox.gd" type="Script" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
@@ -46,6 +48,10 @@ scale = 5.0
 scale_random = 0.5
 color = Color( 0.819608, 0.819608, 0.819608, 1 )
 
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 58.0
+height = 18.0
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 11
@@ -78,11 +84,14 @@ animation = "land"
 script = ExtResource( 5 )
 animation = "die"
 
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+animation = "attack"
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
-animation = "run"
-frame = 6
+animation = "attack"
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -114,3 +123,16 @@ stream = ExtResource( 3 )
 [node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
 script = ExtResource( 8 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 28, 3 )
+rotation = 1.5708
+shape = SubResource( 6 )
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_exited"]

@@ -39,7 +39,8 @@ func _physics_process (delta):
 	handle_landing()
 	handle_falling()
 	handle_movement(delta)
-	flip_sprite()
+	handle_attacking()
+	flip_character()
 
 func handle_movement(delta):
 	var influence = 0
@@ -102,14 +103,24 @@ func handle_running(direction):
 		if direction == 0 and state_machine.current == $StateMachine/Run:
 			state_machine.set_state($StateMachine/Idle)
 
-func flip_sprite():
+func handle_attacking():
+	if Input.is_action_pressed("attack"):
+		if state_machine.current != $StateMachine/Attack:
+			if is_on_floor():
+				# Only attacking on the floor for now
+				state_machine.set_state($StateMachine/Attack)
+				state_after_animation = $StateMachine/Idle
+
+func flip_character():
 	if abs(vel.x) > 0:
 		SpriteUtils.flip_sprite(sprite, vel.x < 0)
+		$Hitbox.scale.x = sign(vel.x)
 
 
 func can_move():
+	var mid_attack = state_machine.current == $StateMachine/Attack
 	var mid_landing = state_machine.current == $StateMachine/Land
-	return not (is_dead() or mid_landing)
+	return not (is_dead() or mid_landing or mid_attack)
 
 func is_dead():
 	return state_machine.current == $StateMachine/Die
