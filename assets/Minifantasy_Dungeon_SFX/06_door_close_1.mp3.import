@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/06_door_close_1.mp3-493c83439f38e043bd262d488eca587d.mp3str"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_SFX/06_door_close_1.mp3"
+dest_files=[ "res://.import/06_door_close_1.mp3-493c83439f38e043bd262d488eca587d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

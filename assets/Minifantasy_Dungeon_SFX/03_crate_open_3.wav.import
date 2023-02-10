@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/03_crate_open_3.wav-30f96bd6c88ff67994f40a11ef84b62b.sample"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_SFX/03_crate_open_3.wav"
+dest_files=[ "res://.import/03_crate_open_3.wav-30f96bd6c88ff67994f40a11ef84b62b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

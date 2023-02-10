@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scripts/player/AttackState.gd" type="Script" id=10]
 [ext_resource path="res://scripts/Hitbox.gd" type="Script" id=11]
 [ext_resource path="res://assets/kenney_rgpaudio/handleSmallLeather2.ogg" type="AudioStream" id=12]
+[ext_resource path="res://scripts/player/WeaponSwingPlayer.gd" type="Script" id=13]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
@@ -93,6 +94,7 @@ animation = "attack"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "attack"
+frame = 2
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -127,6 +129,7 @@ script = ExtResource( 8 )
 
 [node name="WeaponSwingPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0

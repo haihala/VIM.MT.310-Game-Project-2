@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/23_orc_jump_land.wav-03058cd8aa7f72e44356bf3ece0bd994.sample"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_SFX/23_orc_jump_land.wav"
+dest_files=[ "res://.import/23_orc_jump_land.wav-03058cd8aa7f72e44356bf3ece0bd994.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

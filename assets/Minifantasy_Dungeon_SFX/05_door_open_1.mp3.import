@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/05_door_open_1.mp3-bd03398b38922d9e4068749ddd27cfa1.mp3str"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_SFX/05_door_open_1.mp3"
+dest_files=[ "res://.import/05_door_open_1.mp3-bd03398b38922d9e4068749ddd27cfa1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

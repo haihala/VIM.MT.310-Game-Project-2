@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/15_human_dash_1.wav-438102e63cb5dfc70498c5a1b83c7a6b.sample"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_SFX/15_human_dash_1.wav"
+dest_files=[ "res://.import/15_human_dash_1.wav-438102e63cb5dfc70498c5a1b83c7a6b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

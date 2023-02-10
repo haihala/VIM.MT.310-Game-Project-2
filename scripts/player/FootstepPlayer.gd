@@ -11,4 +11,4 @@ func _process(_delta):
 	if play_footsteps and not self.playing:
 		randomize()
 		self.stream = footsteps[randi() % len(footsteps)]
-		self.play()
+		play()
