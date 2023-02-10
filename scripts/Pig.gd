@@ -13,27 +13,28 @@ func _physics_process(_delta):
 	SpriteUtils.flip_sprite(sprite, position.x < player.position.x)
 
 func take_damage():
+	if state_machine.current == $StateMachine/Die:
+		return
+
+	state_machine.set_state($StateMachine/Hit, true)
+	apply_impulse(Vector2(0, 0), Vector2(0, -500))
 	health -= 1
-	react_to_hit()
-	if health:
+
+	if health > 0:
 		$OnHitSound.play_random()
 	else:
 		$OnDeathSound.play()
 
-func react_to_hit():
-	state_machine.set_state($StateMachine/Hit)
-	apply_impulse(Vector2(0, 0), Vector2(0, -500))
-
-func die():
-	state_machine.set_state($StateMachine/Die)
-
 func animation_done():
-	if health:
+	if health > 0:
 		if state_machine.current != $StateMachine/Idle:
 			state_machine.set_state($StateMachine/Idle)
 	else:
-		if state_machine.current == $StateMachine/Die:
+		# After getting hit animation is done, it gets here
+		if state_machine.current != $StateMachine/Die:
+			# Starts dying animation
+			state_machine.set_state($StateMachine/Die)
+		else:
+			# After dying animation is done, it gets here
 			yield(get_tree().create_timer(2), "timeout")
 			queue_free()
-		else:
-			die()

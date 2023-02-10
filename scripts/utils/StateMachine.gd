@@ -12,14 +12,14 @@ func _physics_process(delta):
 	if current:
 		current.active(delta)
 
-func set_state(new_state):
+func set_state(new_state, reactivate_ok = false):
 	if locked:
 		return push_warning("State machine is locked")
 	
 	if not available_states.has(new_state):
 		return push_error("Unrecognized state")
 	
-	if new_state == current:
+	if new_state == current and not reactivate_ok:
 		return push_error("Cannot reactivate current state")
 
 	if current:

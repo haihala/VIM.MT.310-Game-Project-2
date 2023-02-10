@@ -124,7 +124,7 @@ animation = "hit"
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 3
+frame = 2
 playing = true
 offset = Vector2( -3, -6 )
 
