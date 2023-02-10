@@ -2,8 +2,6 @@ extends Node
 
 class_name StateMachine
 
-var locked = false
-
 onready var available_states = self.get_children()
 
 var current
@@ -13,9 +11,6 @@ func _physics_process(delta):
 		current.active(delta)
 
 func set_state(new_state, reactivate_ok = false):
-	if locked:
-		return push_warning("State machine is locked")
-	
 	if not available_states.has(new_state):
 		return push_error("Unrecognized state")
 	
