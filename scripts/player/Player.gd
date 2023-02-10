@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var health : int = 3
-var score : int = 0
 var grounded : bool = false
 
 # Movement
@@ -132,12 +131,6 @@ func take_damage():
 	else:
 		health -= 1
 		health_bar.update_hearts(health)
-
-# called when we run into a coin
-func collect_coin (value):
-	score += value
-	coin_pickup_player.play()
-	ui.set_score_text(score)
 
 func animation_finished():
 	if state_after_animation:
