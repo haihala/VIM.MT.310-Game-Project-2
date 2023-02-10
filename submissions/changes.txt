@@ -1,0 +1,43 @@
+# Running the game
+
+Exported windows and linux build. Those are in the builds folder. Couldn't notorize a mac build.
+
+Use left and right arrows to move. Up to jump.
+
+# Previously added assets
+
+Added the kings and pigs asset pack I found in itch.io
+https://pixelfrog-assets.itch.io/kings-and-pigs
+
+Added the RPG Audio pack from kenney.nl
+https://www.kenney.nl/assets/rpg-audio
+
+# Systems
+
+- Added an attack
+- Added a health system
+- Removed score
+- Added a little pause after landing before you can move
+
+# Visuals
+
+- Added animations to
+	- Player's attack 
+	- The pig taking damage and dying
+- Added a health bar with pulsing hearts.
+	- The heartbeat speeds up if you get lower in health.
+- Sped up player walk animation
+
+# Audio
+
+Added the Minifantasy - Dungeon Audio Pack from itch.io
+https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
+
+- Added a sound effect to
+	- Player's attack and landing
+	- The pig taking damage and dying
+
+# Under the hood
+
+- Reworked player's state machine, as previous implementation wasn't great
+- Added a generic component to play a random audio clip. No idea why this isn't in the engine already.
