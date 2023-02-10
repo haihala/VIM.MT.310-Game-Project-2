@@ -13,7 +13,6 @@ func enter():
 	attack_sound_player.play_random()
 	if first_active_frame == 0:
 		hitbox.start_attack()
-		print(hitbox.active)
 
 func active(_delta):
 	if sprite.frame >= last_active_frame:

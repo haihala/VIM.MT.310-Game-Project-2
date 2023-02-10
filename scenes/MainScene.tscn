@@ -22,6 +22,9 @@ position = Vector2( -576, -63 )
 [node name="Coin2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 92, -88 )
 
+[node name="Pig" parent="." instance=ExtResource( 2 )]
+position = Vector2( -498, -11 )
+
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( -7, -88 )
 
@@ -40,6 +43,3 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Pig" parent="." instance=ExtResource( 2 )]
-position = Vector2( -498, -11 )

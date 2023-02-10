@@ -1,31 +1,51 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 onready var player = get_node("/root/MainScene/Player")
 onready var sprite = $AnimatedSprite
 onready var state_machine = $StateMachine
 
 var health = 3
+var vel : Vector2 = Vector2()
+var speed = 90
+var facing = 1
+var attack_range = 65
 
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
 	sprite.connect("animation_finished", self, "animation_done")
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	flip_character()
-	if state_machine.current == $StateMachine/Idle and abs(player.position.x-position.x) < 100:
-		state_machine.set_state($StateMachine/Attack)
+	
+	if can_act():
+		if abs(player.position.x-position.x) < attack_range:
+			state_machine.set_state($StateMachine/Attack)
+		elif state_machine.current != $StateMachine/Run:
+			state_machine.set_state($StateMachine/Run)
+	
+	if state_machine.current == $StateMachine/Run:
+		vel.x = speed * facing
+	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die]:
+		vel.x = 0
+
+	vel.y += Constants.gravity * delta
+	vel = move_and_slide(vel, Vector2.UP)
+
+func can_act():
+	return state_machine.current in [$StateMachine/Idle, $StateMachine/Run]
 
 func flip_character():
-	var facing = sign(position.x - player.position.x)
-	$Hitbox.scale.x = facing
-	SpriteUtils.flip_sprite(sprite, facing < 0)
+	facing = sign(player.position.x- position.x)
+	if can_act():
+		$Hitbox.scale.x = -facing
+		SpriteUtils.flip_sprite(sprite, facing > 0)
 
 func take_damage():
 	if state_machine.current == $StateMachine/Die:
 		return
 
 	state_machine.set_state($StateMachine/Hit, true)
-	apply_impulse(Vector2(0, 0), Vector2(0, -500))
+	vel.y -= 500
 	health -= 1
 
 	if health > 0:

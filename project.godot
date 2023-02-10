@@ -12,12 +12,17 @@ _global_script_classes=[ {
 "base": "State",
 "class": "AnimatedState",
 "language": "GDScript",
-"path": "res://scripts/utils/AnimatedState.gd"
+"path": "res://scripts/state_machine/AnimatedState.gd"
 }, {
 "base": "AnimatedState",
 "class": "AttackState",
 "language": "GDScript",
-"path": "res://scripts/utils/AttackState.gd"
+"path": "res://scripts/state_machine/AttackState.gd"
+}, {
+"base": "AnimatedState",
+"class": "RunState",
+"language": "GDScript",
+"path": "res://scripts/state_machine/RunState.gd"
 }, {
 "base": "Reference",
 "class": "SpriteUtils",
@@ -27,16 +32,17 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
-"path": "res://scripts/utils/State.gd"
+"path": "res://scripts/state_machine/State.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://scripts/utils/StateMachine.gd"
+"path": "res://scripts/state_machine/StateMachine.gd"
 } ]
 _global_script_class_icons={
 "AnimatedState": "",
 "AttackState": "",
+"RunState": "",
 "SpriteUtils": "",
 "State": "",
 "StateMachine": ""
@@ -47,6 +53,10 @@ _global_script_class_icons={
 config/name="GodotTutorial"
 run/main_scene="res://scenes/MainScene.tscn"
 config/icon="res://assets/kings_and_pigs/01-King Human/Jump (78x58).png"
+
+[autoload]
+
+Constants="*res://scripts/utils/Constants.gd"
 
 [display]
 

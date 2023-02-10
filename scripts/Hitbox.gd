@@ -16,7 +16,6 @@ func end_attack():
 
 # Only enemies are on the layer this can hit
 func _on_Hitbox_body_entered(body):
-	print(body)
 	if active and not body in enemies_hit_this_swing:
 		body.take_damage()
 		enemies_hit_this_swing.append(body)

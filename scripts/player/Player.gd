@@ -11,18 +11,6 @@ var ground_friction : float = 10
 var air_speed_influence : float = 5
 var air_friction : float = 1
 
-# Jumping
-# Calculate jump properties from easily reasonable concepts
-# Tweak theses
-export var jump_height : float = 3	# In tiles
-export var jump_duration : float = 0.6	# In seconds
-
-# Use these in code
-var time_to_apex = jump_duration/2	# Equations assume we'll only consider one-way travel
-var jump_height_pixels = jump_height * 16;	# Tiles are 32 by 32, but for some reason this needs to be doubled
-var gravity : float = 2*jump_height_pixels / pow(time_to_apex, 2)
-var jump_impulse : float = (gravity * time_to_apex) + (jump_height_pixels / time_to_apex)
-
 onready var state_machine = $StateMachine
 onready var sprite = $AnimatedSprite
 onready var coin_pickup_player = $CoinPickupPlayer
@@ -60,7 +48,7 @@ func handle_movement(delta):
 				state_machine.set_state($StateMachine/Jump)
 				state_after_animation = $StateMachine/Fall
 				grounded = false
-				vel.y -= jump_impulse
+				vel.y -= Constants.jump_impulse
 			influence = ground_speed_influence
 			friction = ground_friction
 		else:
@@ -78,7 +66,7 @@ func handle_movement(delta):
 	
 	# Enforce top speed
 	vel.x = clamp(vel.x, -speed, speed)
-	vel.y += gravity*delta
+	vel.y += Constants.gravity*delta
 	vel = move_and_slide(vel, Vector2.UP)
 
 func handle_landing():
@@ -137,11 +125,12 @@ func die ():
 		var _reload_output = get_tree().reload_current_scene()
 
 func take_damage():
-	if health <= 1:
-		die()
-	else:
+	if health > 0:
 		health -= 1
 		health_bar.update_hearts(health)
+	
+	if health == 0:
+		die()
 
 func animation_finished():
 	if state_after_animation:
