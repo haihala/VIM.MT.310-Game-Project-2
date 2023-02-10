@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var health : int = 3
 var score : int = 0
 var grounded : bool = false
 
@@ -27,6 +28,7 @@ onready var state_machine = $StateMachine
 onready var sprite = $AnimatedSprite
 onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
+onready var health_bar = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
@@ -119,6 +121,12 @@ func die ():
 		# There is a warning if the output is not collected to a variable
 		var _reload_output = get_tree().reload_current_scene()
 
+func take_damage():
+	if health <= 1:
+		die()
+	else:
+		health -= 1
+		health_bar.update_hearts(health)
 
 # called when we run into a coin
 func collect_coin (value):
