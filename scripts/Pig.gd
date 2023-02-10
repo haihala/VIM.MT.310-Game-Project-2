@@ -7,10 +7,18 @@ onready var state_machine = $StateMachine
 var health = 3
 
 func _ready():
+	state_machine.set_state($StateMachine/Idle)
 	sprite.connect("animation_finished", self, "animation_done")
 
 func _physics_process(_delta):
-	SpriteUtils.flip_sprite(sprite, position.x < player.position.x)
+	flip_character()
+	if state_machine.current == $StateMachine/Idle and abs(player.position.x-position.x) < 100:
+		state_machine.set_state($StateMachine/Attack)
+
+func flip_character():
+	var facing = sign(position.x - player.position.x)
+	$Hitbox.scale.x = facing
+	SpriteUtils.flip_sprite(sprite, facing < 0)
 
 func take_damage():
 	if state_machine.current == $StateMachine/Die:
