@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Goblins_Dance_(Battle).wav-674e9484e669baa518aad4a86a13a4e9.sample"
+
+[deps]
+
+source_file="res://assets/Minifantasy_Dungeon_Music/Goblins_Dance_(Battle).wav"
+dest_files=[ "res://.import/Goblins_Dance_(Battle).wav-674e9484e669baa518aad4a86a13a4e9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
