@@ -30,8 +30,11 @@ onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("/root/MainScene/CanvasLayer/UI")
 onready var health_bar = get_node("/root/MainScene/CanvasLayer/UI/HealthBar")
 
+var state_after_animation
+
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
+	sprite.connect("animation_finished", self, "animation_finished")
 
 func _physics_process (delta):
 	handle_landing()
@@ -55,6 +58,8 @@ func handle_movement(delta):
 		if is_on_floor():
 			if Input.is_action_pressed("jump"):
 				state_machine.set_state($StateMachine/Jump)
+				state_after_animation = $StateMachine/Fall
+				grounded = false
 				vel.y -= jump_impulse
 			influence = ground_speed_influence
 			friction = ground_friction
@@ -81,15 +86,14 @@ func handle_landing():
 		# Just landed
 		state_machine.set_state($StateMachine/Land)
 		grounded = true
-		yield(get_tree().create_timer(0.1), "timeout")
-		state_machine.set_state($StateMachine/Idle)
+		state_after_animation = $StateMachine/Idle
 
 func handle_falling():
 	if not is_on_floor() and grounded:
 		# Just left the ground
 		grounded = false
-		yield(get_tree().create_timer(0.1), "timeout")
-		state_machine.set_state($StateMachine/Fall)
+		if state_machine.current != $StateMachine/Jump:
+			state_machine.set_state($StateMachine/Fall)
 
 func handle_running(direction):
 	if is_on_floor():
@@ -105,7 +109,7 @@ func flip_sprite():
 
 
 func can_move():
-	var mid_landing = state_machine.current == $StateMachine/Die
+	var mid_landing = state_machine.current == $StateMachine/Land
 	return not (is_dead() or mid_landing)
 
 func is_dead():
@@ -116,8 +120,9 @@ func die ():
 	if not is_dead():
 		state_machine.set_state($StateMachine/Die)
 		state_machine.locked = true
-		# Wait some time so the animation plays out
+		# Wait one extra second
 		yield(get_tree().create_timer(4), "timeout")
+		
 		# There is a warning if the output is not collected to a variable
 		var _reload_output = get_tree().reload_current_scene()
 
@@ -134,3 +139,8 @@ func collect_coin (value):
 	coin_pickup_player.play()
 	ui.set_score_text(score)
 
+func animation_finished():
+	if state_after_animation:
+		state_machine.set_state(state_after_animation)
+		state_after_animation = null
+		

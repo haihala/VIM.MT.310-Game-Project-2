@@ -58,5 +58,5 @@ animations = [ {
 
 [node name="Heart" type="AnimatedSprite"]
 frames = SubResource( 11 )
-frame = 6
+frame = 7
 playing = true
