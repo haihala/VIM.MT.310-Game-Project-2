@@ -60,6 +60,7 @@ radius = 20.0
 height = 6.0
 
 [node name="Pig" type="RigidBody2D"]
+collision_layer = 0
 mode = 2
 script = ExtResource( 2 )
 
@@ -67,6 +68,7 @@ script = ExtResource( 2 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
 animation = "idle"
+frame = 1
 playing = true
 offset = Vector2( -3, -6 )
 

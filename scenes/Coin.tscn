@@ -55,6 +55,8 @@ animations = [ {
 } ]
 
 [node name="Coin" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,7 +65,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
-frame = 8
+frame = 2
 playing = true
 offset = Vector2( -2, 1 )
 
