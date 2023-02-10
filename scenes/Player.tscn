@@ -130,6 +130,7 @@ high_index = 9
 
 [node name="WeaponSwingPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 12 )
+volume_db = -10.0
 script = ExtResource( 13 )
 path_template = "res://assets/Minifantasy_Dungeon_SFX/07_human_atk_sword_%s.wav"
 low_index = 1
