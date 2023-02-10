@@ -1,0 +1,40 @@
+# Running the game
+Exported windows and linux build. Those are in the builds folder. Couldn't notorize a mac build.
+
+Use left and right arrows to move. Up to jump.
+
+# Graphics
+Added the kings and pigs asset pack I found in itch.io
+https://pixelfrog-assets.itch.io/kings-and-pigs
+
+- Made a tileset and painted the world with them
+- Player
+	- Used the king human sprites
+	- Added animations for idle, running, jumping, falling, landing and dying
+- Pig
+	- Added a pig that will eventually become an enemy
+	- Used the pig sprites
+	- Now it has an idle animation and looks at you. Menacingly
+- Particles
+	- For landing (lots) and for running (some)
+	- Made them in godot
+
+# Audio
+Added the RPG Audio pack from kenney.nl
+https://www.kenney.nl/assets/rpg-audio
+
+- Made it play a sound when the character is running or picks up a diamond
+
+# Behavior
+- Made a basic finite state machine for the player
+	- Maintaining the state information was getting overwhelming and I'm planning on adding more states
+- Rewrote the movement system
+	- I felt the existing one didn't feel great
+	- The current one is relatively weighty which fits the player sprite
+
+
+# Plans
+- Hopefully I'll get some basic combat going next part.
+	- Using that as an excuse to add all sorts of sound effects here and there.
+- Landing is currently quiet which is weird.
+
