@@ -6,6 +6,10 @@ class_name State
 func enter():
 	pass
 
+## Called each tick when this is active
+func active(_delta):
+	pass
+
 ## Called when this is removed from the stack
 func exit():
 	pass

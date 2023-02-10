@@ -8,6 +8,10 @@ onready var available_states = self.get_children()
 
 var current
 
+func _physics_process(delta):
+	if current:
+		current.active(delta)
+
 func set_state(new_state):
 	if locked:
 		return push_warning("State machine is locked")

@@ -8,10 +8,12 @@ func enter():
 	.enter()
 	
 	particles.emitting = true
-	footstep_player.play_footsteps = true
 	footstep_player.volume_db = -20
+
+func active(_delta):
+	if !footstep_player.playing:
+		footstep_player.play_random()
 
 func exit():
 	particles.emitting = false
-	footstep_player.play_footsteps = false
 	footstep_player.volume_db = 0

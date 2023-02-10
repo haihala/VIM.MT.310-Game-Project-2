@@ -69,9 +69,11 @@ script = ExtResource( 2 )
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 7
+frame = 9
 playing = true
 offset = Vector2( -3, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 13 )
+
+[node name="OnHitSound" type="AudioStreamPlayer2D" parent="."]
