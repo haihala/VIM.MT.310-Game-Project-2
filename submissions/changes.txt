@@ -2,7 +2,7 @@
 
 Exported windows and linux build. Those are in the builds folder. Couldn't notorize a mac build.
 
-Use left and right arrows to move. Up to jump.
+Use left and right arrows to move. Up to jump. Space to attack (only on the ground)
 
 # Previously added assets
 
@@ -18,12 +18,13 @@ https://www.kenney.nl/assets/rpg-audio
 - Added a health system
 - Removed score
 - Added a little pause after landing before you can move
+- Made pig fight you
 
 # Visuals
 
 - Added animations to
-	- Player's attack 
-	- The pig taking damage and dying
+	- Player's attack and taking damage
+	- The pig running, attacking, taking damage and dying
 - Added a health bar with pulsing hearts.
 	- The heartbeat speeds up if you get lower in health.
 - Sped up player walk animation
@@ -34,7 +35,7 @@ Added the Minifantasy - Dungeon Audio Pack from itch.io
 https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
 - Added a sound effect to
-	- Player's attack and landing
+	- Player's attack, taking a hit, dying, and landing
 	- The pig taking damage and dying
 - Added background music from the same pack
 
