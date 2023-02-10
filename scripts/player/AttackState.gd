@@ -1,8 +1,10 @@
 extends PlayerState
 
 onready var hitbox = get_node("../../Hitbox")
+onready var attack_sound_player = get_node("../../WeaponSwingPlayer")
 
 func enter():
 	.enter()
 	hitbox.hit()
-	# TODO: Play sound
+	attack_sound_player.play()
+	attack_sound_player.seek(0.1)
