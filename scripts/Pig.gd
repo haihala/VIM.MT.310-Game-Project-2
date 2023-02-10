@@ -2,9 +2,9 @@ extends RigidBody2D
 
 onready var player = get_node("/root/MainScene/Player")
 onready var sprite = $AnimatedSprite
+onready var state_machine = $StateMachine
 
 var health = 3
-var dead = false
 
 func _ready():
 	sprite.connect("animation_finished", self, "animation_done")
@@ -21,18 +21,18 @@ func take_damage():
 		$OnDeathSound.play()
 
 func react_to_hit():
-	sprite.play("hit")
+	state_machine.set_state($StateMachine/Hit)
 	apply_impulse(Vector2(0, 0), Vector2(0, -500))
 
 func die():
-	sprite.play("die")
-	dead = true
+	state_machine.set_state($StateMachine/Die)
 
 func animation_done():
 	if health:
-		sprite.play("idle")
+		if state_machine.current != $StateMachine/Idle:
+			state_machine.set_state($StateMachine/Idle)
 	else:
-		if dead:
+		if state_machine.current == $StateMachine/Die:
 			yield(get_tree().create_timer(2), "timeout")
 			queue_free()
 		else:

@@ -1,4 +1,4 @@
-extends PlayerState
+extends AnimatedState
 
 onready var particles = get_node("../../RunningParticles")
 onready var footstep_player = get_node("../../FootstepPlayer")

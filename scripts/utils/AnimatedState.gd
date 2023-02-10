@@ -1,6 +1,6 @@
 extends State
 
-class_name PlayerState
+class_name AnimatedState
 
 export var animation: String
 onready var sprite = get_node("../../AnimatedSprite")

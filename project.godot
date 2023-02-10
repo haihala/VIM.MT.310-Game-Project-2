@@ -10,9 +10,9 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "State",
-"class": "PlayerState",
+"class": "AnimatedState",
 "language": "GDScript",
-"path": "res://scripts/player/AnimatedState.gd"
+"path": "res://scripts/utils/AnimatedState.gd"
 }, {
 "base": "Reference",
 "class": "SpriteUtils",
@@ -30,7 +30,7 @@ _global_script_classes=[ {
 "path": "res://scripts/utils/StateMachine.gd"
 } ]
 _global_script_class_icons={
-"PlayerState": "",
+"AnimatedState": "",
 "SpriteUtils": "",
 "State": "",
 "StateMachine": ""

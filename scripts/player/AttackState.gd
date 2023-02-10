@@ -1,4 +1,4 @@
-extends PlayerState
+extends AnimatedState
 
 onready var hitbox = get_node("../../Hitbox")
 onready var attack_sound_player = get_node("../../WeaponSwingPlayer")
