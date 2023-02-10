@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "State",
 "class": "PlayerState",
 "language": "GDScript",
-"path": "res://scripts/player/PlayerState.gd"
+"path": "res://scripts/player/AnimatedState.gd"
 }, {
 "base": "Reference",
 "class": "SpriteUtils",
