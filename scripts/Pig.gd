@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var player = get_node("/root/MainScene/Player")
+onready var player = get_node("/root/MainScene/Common/Player")
 onready var sprite = $AnimatedSprite
 onready var state_machine = $StateMachine
 

@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/HealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/common/HealthBar.tscn" type="PackedScene" id=4]
+
 
 [node name="UI" type="Control"]
 anchor_right = 1.0

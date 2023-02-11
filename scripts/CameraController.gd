@@ -1,6 +1,6 @@
 extends Camera2D
 
-onready var player = get_node("/root/MainScene/Player")
+onready var player = get_node("../Player")
 
 var dampening = 0.9
 var max_magnitude = 20
