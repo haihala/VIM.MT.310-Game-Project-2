@@ -8,7 +8,7 @@ var vel : Vector2 = Vector2()
 var speed : float = 200
 var ground_speed_influence : float = 200
 var ground_friction : float = 10
-var air_speed_influence : float = 5
+var air_speed_influence : float = 20
 var air_friction : float = 1
 
 onready var state_machine = $StateMachine
