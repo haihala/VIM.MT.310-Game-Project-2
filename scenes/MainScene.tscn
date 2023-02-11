@@ -8,6 +8,6 @@
 position = Vector2( 871, 424 )
 
 [node name="LevelLoader" parent="." instance=ExtResource( 5 )]
-scenes = [ ExtResource( 1 ) ]
+initial = ExtResource( 1 )
 
 [node name="Common" parent="." instance=ExtResource( 3 )]
