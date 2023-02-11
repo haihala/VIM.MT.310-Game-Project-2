@@ -206,7 +206,7 @@ animation = "run"
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 2
+frame = 5
 playing = true
 offset = Vector2( -3, -6 )
 

@@ -111,8 +111,8 @@ animation = "hit"
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
-animation = "attack"
-frame = 1
+animation = "idle"
+frame = 3
 playing = true
 offset = Vector2( 7, 0 )
 

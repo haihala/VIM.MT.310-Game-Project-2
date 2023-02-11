@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=38 format=2]
+[gd_resource type="SpriteFrames" load_steps=56 format=2]
 
 [ext_resource path="res://assets/kings_and_pigs/01-King Human/Idle (78x58).png" type="Texture" id=1]
 [ext_resource path="res://assets/kings_and_pigs/01-King Human/Run (78x58).png" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/kings_and_pigs/01-King Human/Ground (78x58).png" type="Texture" id=6]
 [ext_resource path="res://assets/kings_and_pigs/01-King Human/Attack (78x58).png" type="Texture" id=7]
 [ext_resource path="res://assets/kings_and_pigs/01-King Human/Hit (78x58).png" type="Texture" id=8]
+[ext_resource path="res://assets/kings_and_pigs/01-King Human/Door In (78x58).png" type="Texture" id=9]
+[ext_resource path="res://assets/kings_and_pigs/01-King Human/Door Out (78x58).png" type="Texture" id=10]
 
 [sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 7 )
@@ -36,6 +38,70 @@ region = Rect2( 156, 0, 78, 58 )
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 4 )
 region = Rect2( 234, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 10 )
+region = Rect2( 78, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 10 )
+region = Rect2( 156, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 10 )
+region = Rect2( 234, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 10 )
+region = Rect2( 312, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 10 )
+region = Rect2( 390, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 10 )
+region = Rect2( 468, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 10 )
+region = Rect2( 546, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 9 )
+region = Rect2( 78, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 9 )
+region = Rect2( 156, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 9 )
+region = Rect2( 234, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 9 )
+region = Rect2( 312, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 9 )
+region = Rect2( 390, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 9 )
+region = Rect2( 468, 0, 78, 58 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 9 )
+region = Rect2( 546, 0, 78, 58 )
 
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 8 )
@@ -136,6 +202,16 @@ animations = [ {
 "loop": false,
 "name": "die",
 "speed": 2.0
+}, {
+"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
+"loop": true,
+"name": "fade in",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ) ],
+"loop": true,
+"name": "fade out",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
