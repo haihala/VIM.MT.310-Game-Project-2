@@ -11,7 +11,7 @@ var health = 3
 var vel : Vector2 = Vector2()
 var speed = 90
 var facing = 1
-var attack_range = 65
+var attack_range = 50
 
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
@@ -21,7 +21,7 @@ func _physics_process(delta):
 	flip_character()
 	
 	if can_act():
-		if abs(player.position.x-position.x) < attack_range:
+		if abs(player.global_position.x-global_position.x) < attack_range:
 			state_machine.set_state($StateMachine/Attack)
 		elif is_on_wall():
 			state_machine.set_state($StateMachine/Jump)
@@ -41,7 +41,7 @@ func can_act():
 	return state_machine.current in [$StateMachine/Idle, $StateMachine/Run]
 
 func flip_character():
-	facing = sign(player.position.x- position.x)
+	facing = sign(player.global_position.x- global_position.x)
 	if can_act():
 		$Hitbox.scale.x = -facing
 		SpriteUtils.flip_sprite(sprite, facing > 0)
