@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export var resurrect_after_death : bool
+
 onready var player = get_node("/root/MainScene/Common/Player")
 onready var sprite = $AnimatedSprite
 onready var state_machine = $StateMachine
@@ -65,4 +67,8 @@ func animation_done():
 		else:
 			# After dying animation is done, it gets here
 			yield(get_tree().create_timer(2), "timeout")
-			queue_free()
+			if resurrect_after_death:
+				health = 3
+				state_machine.set_state($StateMachine/Resurrect)
+			else:
+				queue_free()
