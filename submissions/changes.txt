@@ -17,14 +17,17 @@ https://www.kenney.nl/assets/rpg-audio
 - Added an attack
 - Added a health system
 - Removed score
+- Added destructible boxes
 - Added a little pause after landing before you can move
-- Made pig fight you
+- Made pig fight you, run to you, and jump if it can't reach
+- Made diamonds transport you to new levels
 
 # Visuals
 
 - Added animations to
 	- Player's attack and taking damage
-	- The pig running, attacking, taking damage and dying
+	- The pig running, attacking, jumping, taking damage, dying, and getting back up
+- Added a speech bubble when the pig goes down and gets back up
 - Added a health bar with pulsing hearts.
 	- The heartbeat speeds up if you get lower in health.
 - Sped up player walk animation
@@ -43,3 +46,19 @@ https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
 - Reworked player's state machine, as previous implementation wasn't great
 - Added a generic component to play a random audio clip. No idea why this isn't in the engine already.
+- Refactored levels for easier loading
+
+# Goals for next stage
+
+- Levels 
+	- Tutorial
+	- Level 1 - Basic pig
+	- Level 2 - Cannon pig
+	- Level 3 - Boss pig 1 (will run away after after the fight)
+	- Level 4 - Bomber pig
+	- Level 5 - Boss pig 2 with basic pig, bomber pig and a cannon as backup
+- Main menu
+- End screen
+- Refactor state machine to move more code into the states
+
+Unlike last phase, I find it very unlikely to get everything here done.
