@@ -23,6 +23,9 @@ func _physics_process(delta):
 	if can_act():
 		if abs(player.position.x-position.x) < attack_range:
 			state_machine.set_state($StateMachine/Attack)
+		elif is_on_wall():
+			state_machine.set_state($StateMachine/Jump)
+			vel.y -= Constants.jump_impulse
 		elif state_machine.current != $StateMachine/Run:
 			state_machine.set_state($StateMachine/Run)
 	
