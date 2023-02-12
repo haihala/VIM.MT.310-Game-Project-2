@@ -46,7 +46,7 @@ func flip_character():
 		$Hitbox.scale.x = -facing
 		SpriteUtils.flip_sprite(sprite, facing > 0)
 
-func take_damage():
+func get_hit():
 	if state_machine.current == $StateMachine/Die:
 		return
 

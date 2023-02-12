@@ -126,7 +126,7 @@ func die ():
 		# There is a warning if the output is not collected to a variable
 		var _reload_output = get_tree().reload_current_scene()
 
-func take_damage():
+func get_hit():
 	if health > 0:
 		health -= 1
 		health_bar.update_hearts(health)
