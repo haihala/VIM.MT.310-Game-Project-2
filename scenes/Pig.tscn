@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Idle (34x28).png" type="Texture" id=1]
 [ext_resource path="res://scripts/Pig.gd" type="Script" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=10]
 [ext_resource path="res://scripts/Hitbox.gd" type="Script" id=11]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Run (34x28).png" type="Texture" id=12]
+[ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF In (24x8).png" type="Texture" id=13]
+[ext_resource path="res://scripts/SpeechBubble.gd" type="Script" id=14]
+[ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF Out (24x8).png" type="Texture" id=15]
 
 [sub_resource type="GDScript" id=33]
 script/source = "extends State
@@ -195,6 +198,39 @@ height = 6.0
 radius = 17.0
 height = 42.0
 
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 15 )
+region = Rect2( 34, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 13 )
+region = Rect2( 34, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 13 )
+region = Rect2( 68, 0, 34, 16 )
+
+[sub_resource type="SpriteFrames" id=41]
+animations = [ {
+"frames": [ SubResource( 42 ), SubResource( 43 ) ],
+"loop": false,
+"name": "wtf-fast",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": false,
+"name": "wtf-slow",
+"speed": 3.0
+} ]
+
 [node name="Pig" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 2 )
@@ -265,5 +301,13 @@ position = Vector2( -32, -19 )
 rotation = -0.218166
 shape = SubResource( 25 )
 
+[node name="SpeechBubble" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -40 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 41 )
+animation = "wtf-fast"
+script = ExtResource( 14 )
+
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_exited"]
+[connection signal="animation_finished" from="SpeechBubble" to="SpeechBubble" method="_on_SpeechBubble_animation_finished"]

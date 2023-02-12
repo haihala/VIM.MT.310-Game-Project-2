@@ -5,6 +5,7 @@ export var resurrect_after_death : bool
 onready var player = get_node("/root/MainScene/Common/Player")
 onready var sprite = $AnimatedSprite
 onready var state_machine = $StateMachine
+onready var speech_bubble = $SpeechBubble
 
 var health = 3
 var vel : Vector2 = Vector2()
@@ -64,11 +65,14 @@ func animation_done():
 		if state_machine.current != $StateMachine/Die:
 			# Starts dying animation
 			state_machine.set_state($StateMachine/Die)
+			if resurrect_after_death:
+				speech_bubble.say("wtf-fast")
 		else:
 			# After dying animation is done, it gets here
 			yield(get_tree().create_timer(2), "timeout")
 			if resurrect_after_death:
 				health = 3
+				speech_bubble.say("wtf-slow")
 				state_machine.set_state($StateMachine/Resurrect)
 			else:
 				queue_free()
