@@ -19,26 +19,30 @@ func _ready():
 
 func _physics_process(delta):
 	flip_character()
-	
+
+	if is_on_floor() and state_machine.current in [$StateMachine/Jump, $StateMachine/Fall]:
+		state_machine.set_state($StateMachine/Land)
+
 	if can_act():
 		if abs(player.global_position.x-global_position.x) < attack_range:
 			state_machine.set_state($StateMachine/Attack)
 		elif is_on_wall():
 			state_machine.set_state($StateMachine/Jump)
 			vel.y -= Constants.jump_impulse
-		elif state_machine.current != $StateMachine/Run:
+		elif state_machine.current == $StateMachine/Idle:
 			state_machine.set_state($StateMachine/Run)
+	
 	
 	if state_machine.current == $StateMachine/Run:
 		vel.x = speed * facing
-	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die]:
+	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land]:
 		vel.x = 0
 
 	vel.y += Constants.gravity * delta
 	vel = move_and_slide(vel, Vector2.UP)
 
 func can_act():
-	return state_machine.current in [$StateMachine/Idle, $StateMachine/Run]
+	return is_on_floor() and not state_machine.current in [$StateMachine/Attack, $StateMachine/Land]
 
 func flip_character():
 	facing = sign(player.global_position.x- global_position.x)
@@ -61,8 +65,12 @@ func get_hit():
 
 func animation_done():
 	if health > 0:
-		if state_machine.current != $StateMachine/Idle:
-			state_machine.set_state($StateMachine/Idle)
+		if is_on_floor():
+			if state_machine.current != $StateMachine/Idle:
+				state_machine.set_state($StateMachine/Idle)
+		else:
+			if state_machine.current != $StateMachine/Fall:
+				state_machine.set_state($StateMachine/Fall)
 	else:
 		# After getting hit animation is done, it gets here
 		if state_machine.current != $StateMachine/Die:

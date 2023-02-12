@@ -26,11 +26,12 @@ https://www.kenney.nl/assets/rpg-audio
 
 - Added animations to
 	- Player's attack and taking damage
-	- The pig running, attacking, jumping, taking damage, dying, and getting back up
+	- The pig running, attacking, jumping, landing, taking damage, dying, and getting back up
 - Added a speech bubble when the pig goes down and gets back up
 - Added a health bar with pulsing hearts.
 	- The heartbeat speeds up if you get lower in health.
 - Sped up player walk animation
+- Particles to pig running and landing
 
 # Audio
 
@@ -39,7 +40,7 @@ https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack
 
 - Added a sound effect to
 	- Player's attack, taking a hit, dying, and landing
-	- The pig taking damage and dying
+	- The pig running, landing, taking damage and dying
 - Added background music from the same pack
 
 # Under the hood

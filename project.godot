@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/state_machine/AttackState.gd"
 }, {
-"base": "AnimatedState",
-"class": "RunState",
-"language": "GDScript",
-"path": "res://scripts/state_machine/RunState.gd"
-}, {
 "base": "Reference",
 "class": "SpriteUtils",
 "language": "GDScript",
@@ -42,7 +37,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AnimatedState": "",
 "AttackState": "",
-"RunState": "",
 "SpriteUtils": "",
 "State": "",
 "StateMachine": ""

@@ -7,5 +7,5 @@ func enter():
 	.enter()
 	if not particles.emitting:
 		particles.restart()
-	footstep_player.play()
+	footstep_player.play_random()
 	

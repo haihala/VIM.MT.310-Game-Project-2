@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/kenney_rgpaudio/handleCoins.ogg" type="AudioStream" id=3]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=5]
-[ext_resource path="res://scripts/player/LandState.gd" type="Script" id=6]
-[ext_resource path="res://scripts/player/RunState.gd" type="Script" id=7]
+[ext_resource path="res://scripts/state_machine/LandState.gd" type="Script" id=6]
+[ext_resource path="res://scripts/state_machine/RunState.gd" type="Script" id=7]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/kenney_rgpaudio/footstep00.ogg" type="AudioStream" id=9]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=10]
@@ -47,7 +47,7 @@ scale = 10.0
 scale_random = 0.5
 color = Color( 0.819608, 0.819608, 0.819608, 1 )
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=46]
 lifetime_randomness = 1.0
 emission_shape = 2
 emission_box_extents = Vector3( 10, 10, 1 )
@@ -112,7 +112,6 @@ animation = "hit"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -136,7 +135,7 @@ amount = 2
 lifetime = 0.3
 preprocess = 0.2
 local_coords = false
-process_material = SubResource( 5 )
+process_material = SubResource( 46 )
 
 [node name="CoinPickupPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
