@@ -118,7 +118,7 @@ func die ():
 	# Can't die twice
 	if not is_dead():
 		state_machine.set_state($StateMachine/Die)
-		$OnDeathSound.play()
+		$CharacterAudio.death()
 		# Wait one extra second
 		yield(get_tree().create_timer(4), "timeout")
 		
@@ -134,7 +134,7 @@ func get_hit():
 	if health > 0:
 		state_machine.set_state($StateMachine/Hit)
 		state_after_animation = $StateMachine/Idle
-		$OnHitSound.play_random()
+		$CharacterAudio.hit()
 	else:
 		die()
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scripts/character_bits/SpeechBubble.gd" type="Script" id=1]
+[ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF Out (24x8).png" type="Texture" id=2]
+[ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF In (24x8).png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 34, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=38]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=39]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 34, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=40]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 68, 0, 34, 16 )
+
+[sub_resource type="SpriteFrames" id=41]
+animations = [ {
+"frames": [ SubResource( 42 ), SubResource( 43 ) ],
+"loop": false,
+"name": "exclaim",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ],
+"loop": false,
+"name": "grumble",
+"speed": 3.0
+} ]
+
+[node name="SpeechBubble" type="AnimatedSprite"]
+position = Vector2( 0, -40 )
+scale = Vector2( 3, 3 )
+frames = SubResource( 41 )
+animation = "exclaim"
+script = ExtResource( 1 )
+
+[connection signal="animation_finished" from="." to="." method="_on_SpeechBubble_animation_finished"]

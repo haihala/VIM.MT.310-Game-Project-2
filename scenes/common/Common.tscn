@@ -5,7 +5,6 @@
 [ext_resource path="res://scenes/common/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/utils/CameraController.gd" type="Script" id=4]
 
-
 [node name="Common" type="Node2D"]
 
 [node name="BackgroundMusic" parent="." instance=ExtResource( 2 )]
