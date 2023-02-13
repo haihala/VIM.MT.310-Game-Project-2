@@ -59,9 +59,9 @@ func get_hit():
 	health -= 1
 
 	if health > 0:
-		$OnHitSound.play_random()
+		$CharacterAudio.hit()
 	else:
-		$OnDeathSound.play()
+		$CharacterAudio.death()
 
 func animation_done():
 	if health > 0:

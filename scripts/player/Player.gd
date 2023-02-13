@@ -13,7 +13,6 @@ var air_friction : float = 1
 
 onready var state_machine = $StateMachine
 onready var sprite = $AnimatedSprite
-onready var coin_pickup_player = $CoinPickupPlayer
 onready var ui = get_node("../CanvasLayer/UI")
 onready var health_bar = get_node("../CanvasLayer/UI/HealthBar")
 onready var camera = get_node("../Camera")

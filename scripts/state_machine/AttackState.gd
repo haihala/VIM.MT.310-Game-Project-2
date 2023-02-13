@@ -6,11 +6,11 @@ export var first_active_frame: int
 export var last_active_frame: int
 
 onready var hitbox = get_node("../../Hitbox")
-onready var attack_sound_player = get_node("../../AttackSoundPlayer")
+onready var sound_player = get_node("../../CharacterAudio")
 
 func enter():
 	.enter()
-	attack_sound_player.play_random()
+	sound_player.attack()
 	if first_active_frame == 0:
 		hitbox.start_attack()
 

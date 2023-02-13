@@ -1,71 +1,19 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
-[ext_resource path="res://assets/kenney_rgpaudio/handleCoins.ogg" type="AudioStream" id=3]
+[ext_resource path="res://scenes/character_bits/CharacterAudio.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=5]
 [ext_resource path="res://scripts/state_machine/LandState.gd" type="Script" id=6]
 [ext_resource path="res://scripts/state_machine/RunState.gd" type="Script" id=7]
-[ext_resource path="res://assets/Minifantasy_Dungeon_SFX/14_human_death_spin.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/kenney_rgpaudio/footstep00.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scenes/character_bits/CharacterParticles.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/character_bits/Hitbox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=10]
-[ext_resource path="res://scripts/Hitbox.gd" type="Script" id=11]
-[ext_resource path="res://assets/kenney_rgpaudio/handleSmallLeather2.ogg" type="AudioStream" id=12]
-[ext_resource path="res://scripts/utils/RandomAudioClipPlayer.gd" type="Script" id=13]
-
-[sub_resource type="GDScript" id=33]
-script/source = "extends State
-
-class_name AnimatedState
-
-export var animation: String
-onready var sprite = get_node(\"../../AnimatedSprite\")
-
-func enter():
-	if sprite.animation != animation:
-		sprite.play(animation)
-"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
 height = 8.0
-
-[sub_resource type="ParticlesMaterial" id=4]
-lifetime_randomness = 1.0
-emission_shape = 2
-emission_box_extents = Vector3( 10, 10, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 88.12
-initial_velocity = 59.4
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 2.97
-angle_random = 1.0
-scale = 10.0
-scale_random = 0.5
-color = Color( 0.819608, 0.819608, 0.819608, 1 )
-
-[sub_resource type="ParticlesMaterial" id=46]
-lifetime_randomness = 1.0
-emission_shape = 2
-emission_box_extents = Vector3( 10, 10, 1 )
-flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
-spread = 88.12
-initial_velocity = 59.4
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-damping = 2.97
-angle_random = 1.0
-scale = 5.0
-scale_random = 0.5
-color = Color( 0.819608, 0.819608, 0.819608, 1 )
-
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 50.9117
-height = 9.06065
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
@@ -76,19 +24,20 @@ script = ExtResource( 2 )
 script = ExtResource( 4 )
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = SubResource( 33 )
+script = ExtResource( 10 )
 animation = "idle"
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 animation = "run"
+interval = 0.45
 
 [node name="Jump" type="Node" parent="StateMachine"]
-script = SubResource( 33 )
+script = ExtResource( 10 )
 animation = "jump"
 
 [node name="Fall" type="Node" parent="StateMachine"]
-script = SubResource( 33 )
+script = ExtResource( 10 )
 animation = "fall"
 
 [node name="Land" type="Node" parent="StateMachine"]
@@ -96,7 +45,7 @@ script = ExtResource( 6 )
 animation = "land"
 
 [node name="Die" type="Node" parent="StateMachine"]
-script = SubResource( 33 )
+script = ExtResource( 10 )
 animation = "die"
 
 [node name="Attack" type="Node" parent="StateMachine"]
@@ -112,6 +61,7 @@ animation = "hit"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 6
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -119,59 +69,9 @@ offset = Vector2( 7, 0 )
 position = Vector2( 0, 5 )
 shape = SubResource( 1 )
 
-[node name="LandingParticles" type="Particles2D" parent="."]
+[node name="CharacterAudio" parent="." instance=ExtResource( 3 )]
+
+[node name="CharacterParticles" parent="." instance=ExtResource( 8 )]
 position = Vector2( 0, 25 )
-emitting = false
-lifetime = 0.5
-one_shot = true
-preprocess = 0.2
-local_coords = false
-process_material = SubResource( 4 )
 
-[node name="RunningParticles" type="Particles2D" parent="."]
-position = Vector2( 0, 25 )
-emitting = false
-amount = 2
-lifetime = 0.3
-preprocess = 0.2
-local_coords = false
-process_material = SubResource( 46 )
-
-[node name="CoinPickupPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
-
-[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 9 )
-script = ExtResource( 13 )
-path_template = "res://assets/kenney_rgpaudio/footstep0%s.ogg"
-high_index = 9
-
-[node name="AttackSoundPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
-volume_db = -10.0
-script = ExtResource( 13 )
-path_template = "res://assets/Minifantasy_Dungeon_SFX/07_human_atk_sword_%s.wav"
-low_index = 1
-high_index = 3
-
-[node name="OnHitSound" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource( 13 )
-path_template = "res://assets/Minifantasy_Dungeon_SFX/11_human_damage_%s.wav"
-low_index = 1
-high_index = 3
-
-[node name="OnDeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
-
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-script = ExtResource( 11 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 37, 5 )
-rotation = 0.895354
-shape = SubResource( 6 )
-
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
-[connection signal="body_exited" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_exited"]
+[node name="Hitbox" parent="." instance=ExtResource( 9 )]

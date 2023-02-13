@@ -1,11 +1,10 @@
 extends AnimatedState
 
-onready var particles = get_node("../../LandingParticles")
-onready var footstep_player = get_node("../../FootstepPlayer")
+onready var particles = get_node("../../CharacterParticles")
+onready var sound_player = get_node("../../CharacterAudio")
 
 func enter():
 	.enter()
-	if not particles.emitting:
-		particles.restart()
-	footstep_player.play_random()
+	particles.land()
+	sound_player.footstep()
 	

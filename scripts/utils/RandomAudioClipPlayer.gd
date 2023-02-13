@@ -10,7 +10,6 @@ var last_index
 func _ready():
 	for i in range(low_index, high_index+1):
 		clips.append(load(path_template % i))
-	
 
 func play_random():
 	randomize()
