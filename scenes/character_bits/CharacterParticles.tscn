@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scripts/CharacterParticles.gd" type="Script" id=1]
+[ext_resource path="res://scripts/character_bits/CharacterParticles.gd" type="Script" id=1]
 
 [sub_resource type="ParticlesMaterial" id=46]
 lifetime_randomness = 1.0

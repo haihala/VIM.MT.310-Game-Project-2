@@ -1,7 +1,7 @@
 [gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Idle (34x28).png" type="Texture" id=1]
-[ext_resource path="res://scripts/Pig.gd" type="Script" id=2]
+[ext_resource path="res://scripts/level_objects/Pig.gd" type="Script" id=2]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_1.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Hit (34x28).png" type="Texture" id=4]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/24_orc_death_spin.wav" type="AudioStream" id=5]
@@ -10,10 +10,10 @@
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=8]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Attack (34x28).png" type="Texture" id=9]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=10]
-[ext_resource path="res://scripts/Hitbox.gd" type="Script" id=11]
+[ext_resource path="res://scripts/character_bits/Hitbox.gd" type="Script" id=11]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Run (34x28).png" type="Texture" id=12]
 [ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF In (24x8).png" type="Texture" id=13]
-[ext_resource path="res://scripts/SpeechBubble.gd" type="Script" id=14]
+[ext_resource path="res://scripts/character_bits/SpeechBubble.gd" type="Script" id=14]
 [ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF Out (24x8).png" type="Texture" id=15]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Jump (34x28).png" type="Texture" id=16]
 [ext_resource path="res://assets/kings_and_pigs/03-Pig/Fall (34x28).png" type="Texture" id=17]
@@ -264,7 +264,6 @@ animations = [ {
 [node name="Pig" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 2 )
-resurrect_after_death = true
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 7 )

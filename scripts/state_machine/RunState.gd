@@ -20,7 +20,6 @@ func play_next():
 	return last_sound + 1000*interval < time
 
 func play_footstep():
-	print("Playing footstep")
 	sound_player.footstep(-10)
 	last_sound = OS.get_system_time_msecs()
 
