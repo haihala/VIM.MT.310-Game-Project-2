@@ -114,29 +114,34 @@ func can_move():
 func is_dead():
 	return state_machine.current == $StateMachine/Die
 
+func take_damage():
+	health -= 1
+	
+	state_machine.set_state($StateMachine/Hit)
+	state_after_animation = $StateMachine/Idle
+	camera.shake()
+	$CharacterAudio.hit()
+	$SpeechBubble.say("grumble")
+
 func die ():
-	# Can't die twice
-	if not is_dead():
-		state_machine.set_state($StateMachine/Die)
-		$CharacterAudio.death()
-		# Wait one extra second
-		yield(get_tree().create_timer(4), "timeout")
-		
-		# There is a warning if the output is not collected to a variable
-		var _reload_output = get_tree().reload_current_scene()
+	health = 0
+
+	state_machine.set_state($StateMachine/Die)
+	camera.shake(20, 0.97)
+	$CharacterAudio.death()
+	$SpeechBubble.say("no")
+	
+	yield(get_tree().create_timer(4), "timeout")
+	# There is a warning if the output is not collected to a variable
+	var _reload_output = get_tree().reload_current_scene()
 
 func get_hit():
-	if health > 0:
-		health -= 1
-		health_bar.update_hearts(health)
-		camera.shake()
-
-	if health > 0:
-		state_machine.set_state($StateMachine/Hit)
-		state_after_animation = $StateMachine/Idle
-		$CharacterAudio.hit()
-	else:
+	if health > 1:
+		take_damage()
+	elif not is_dead():
 		die()
+
+	health_bar.update_hearts(health)
 
 func animation_finished():
 	if state_after_animation:

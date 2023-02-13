@@ -2,9 +2,8 @@ extends Camera2D
 
 onready var player = get_node("../Player")
 
-var dampening = 0.9
-var max_magnitude = 20
 var magnitude = 0
+var dampening = 0
 
 # tracks the player along the X axis
 func _process (_delta):
@@ -20,5 +19,6 @@ func _process (_delta):
 		magnitude = 0
 
 
-func shake(amount = max_magnitude):
+func shake(amount = 20, damp = 0.9):
 	magnitude = amount
+	dampening = damp

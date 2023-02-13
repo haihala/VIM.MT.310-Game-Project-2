@@ -1,32 +1,40 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/character_bits/SpeechBubble.gd" type="Script" id=1]
 [ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF Out (24x8).png" type="Texture" id=2]
 [ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/WTF In (24x8).png" type="Texture" id=3]
+[ext_resource path="res://assets/kings_and_pigs/13-Dialogue Boxes/No In (24x8).png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=42]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 34, 16 )
 
 [sub_resource type="AtlasTexture" id=43]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 34, 0, 34, 16 )
 
 [sub_resource type="AtlasTexture" id=38]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 34, 16 )
 
 [sub_resource type="AtlasTexture" id=39]
-flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 34, 0, 34, 16 )
 
 [sub_resource type="AtlasTexture" id=40]
-flags = 4
 atlas = ExtResource( 3 )
+region = Rect2( 68, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 4 )
+region = Rect2( 34, 0, 34, 16 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 4 )
 region = Rect2( 68, 0, 34, 16 )
 
 [sub_resource type="SpriteFrames" id=41]
@@ -40,6 +48,11 @@ animations = [ {
 "loop": false,
 "name": "grumble",
 "speed": 3.0
+}, {
+"frames": [ SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
+"loop": false,
+"name": "no",
+"speed": 2.0
 } ]
 
 [node name="SpeechBubble" type="AnimatedSprite"]

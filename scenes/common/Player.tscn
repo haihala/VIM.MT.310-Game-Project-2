@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://other/player_animation.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/player/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/character_bits/CharacterParticles.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/character_bits/Hitbox.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=10]
+[ext_resource path="res://scenes/character_bits/SpeechBubble.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
@@ -61,7 +62,7 @@ animation = "hit"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 8
+frame = 9
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -75,3 +76,5 @@ shape = SubResource( 1 )
 position = Vector2( 0, 25 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 9 )]
+
+[node name="SpeechBubble" parent="." instance=ExtResource( 11 )]
