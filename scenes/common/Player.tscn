@@ -62,7 +62,7 @@ animation = "hit"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
+frame = 7
 playing = true
 offset = Vector2( 7, 0 )
 
