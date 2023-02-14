@@ -11,5 +11,5 @@ func get_hit():
 	$Sprite.hide()
 	$DestructionSoundPlayer.play_random()
 	$CollisionShape2D.disabled = true
-	yield(get_tree().create_timer(2), "timeout")
-	queue_free() 
+	var _unused = $DespawnTimer.connect("timeout", self, "queue_free")
+	$DespawnTimer.start()
