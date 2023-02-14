@@ -1,0 +1,57 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://other/pig_animations.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://assets/kings_and_pigs/10-Cannon/Shoot (44x28).png" type="Texture" id=2]
+[ext_resource path="res://assets/kings_and_pigs/10-Cannon/Idle.png" type="Texture" id=3]
+[ext_resource path="res://scripts/level_objects/CannonPig.gd" type="Script" id=4]
+[ext_resource path="res://scenes/level_objects/CannonBall.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 44, 28 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 44, 0, 44, 28 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 88, 0, 44, 28 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 132, 0, 44, 28 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "shoot",
+"speed": 5.0
+} ]
+
+[node name="CannonPig" type="Node2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 4 )
+cannon_ball = ExtResource( 5 )
+
+[node name="Pig" type="AnimatedSprite" parent="."]
+position = Vector2( 30.6667, -3 )
+frames = ExtResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Cannon" type="AnimatedSprite" parent="."]
+position = Vector2( 0.333332, 0 )
+frames = SubResource( 5 )
+animation = "idle"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

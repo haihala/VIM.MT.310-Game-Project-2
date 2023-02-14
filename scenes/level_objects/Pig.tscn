@@ -1,21 +1,14 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Idle (34x28).png" type="Texture" id=1]
+[ext_resource path="res://other/pig_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/level_objects/Pig.gd" type="Script" id=2]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_1.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Hit (34x28).png" type="Texture" id=4]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/24_orc_death_spin.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Dead (34x28).png" type="Texture" id=6]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=8]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Attack (34x28).png" type="Texture" id=9]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=10]
 [ext_resource path="res://scripts/character_bits/Hitbox.gd" type="Script" id=11]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Run (34x28).png" type="Texture" id=12]
 [ext_resource path="res://scenes/character_bits/SpeechBubble.tscn" type="PackedScene" id=13]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Jump (34x28).png" type="Texture" id=16]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Fall (34x28).png" type="Texture" id=17]
-[ext_resource path="res://assets/kings_and_pigs/03-Pig/Ground (34x28).png" type="Texture" id=18]
 [ext_resource path="res://scripts/state_machine/RunState.gd" type="Script" id=19]
 [ext_resource path="res://scripts/state_machine/LandState.gd" type="Script" id=20]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_2.wav" type="AudioStream" id=21]
@@ -28,190 +21,6 @@
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_3.wav" type="AudioStream" id=28]
 [ext_resource path="res://scenes/character_bits/CharacterAudio.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/character_bits/CharacterParticles.tscn" type="PackedScene" id=30]
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 9 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 9 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 9 )
-region = Rect2( 68, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 9 )
-region = Rect2( 102, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 9 )
-region = Rect2( 136, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 6 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 6 )
-region = Rect2( 68, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 6 )
-region = Rect2( 102, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 4 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 68, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 102, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 136, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 170, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 204, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 238, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 272, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 306, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 340, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 16 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 18 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=34]
-atlas = ExtResource( 6 )
-region = Rect2( 102, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 6 )
-region = Rect2( 68, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 6 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=37]
-atlas = ExtResource( 6 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 12 )
-region = Rect2( 0, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 12 )
-region = Rect2( 34, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 12 )
-region = Rect2( 68, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 12 )
-region = Rect2( 102, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 12 )
-region = Rect2( 136, 0, 34, 28 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 12 )
-region = Rect2( 170, 0, 34, 28 )
-
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
-"loop": false,
-"name": "die",
-"speed": 2.0
-}, {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 14 ), SubResource( 15 ) ],
-"loop": false,
-"name": "hit",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 44 ), ExtResource( 17 ) ],
-"loop": false,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 45 ) ],
-"loop": true,
-"name": "land",
-"speed": 2.0
-}, {
-"frames": [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
-"loop": false,
-"name": "resurrect",
-"speed": 4.0
-}, {
-"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-} ]
 
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 20.0
@@ -267,7 +76,7 @@ script = ExtResource( 8 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
-frames = SubResource( 12 )
+frames = ExtResource( 1 )
 animation = "fall"
 playing = true
 offset = Vector2( -3, -6 )
