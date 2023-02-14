@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var resurrect_after_death : bool
+export var drop : PackedScene
 
 onready var player = get_node("/root/MainScene/Common/Player")
 onready var sprite = $AnimatedSprite
@@ -86,4 +87,8 @@ func animation_done():
 				speech_bubble.say("grumble")
 				state_machine.set_state($StateMachine/Resurrect)
 			else:
+				if drop:
+					var instance = drop.instance()
+					instance.position = position
+					get_parent().add_child(instance)
 				queue_free()

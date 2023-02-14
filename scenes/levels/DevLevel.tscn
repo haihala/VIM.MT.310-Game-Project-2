@@ -24,4 +24,4 @@ position = Vector2( -13, -112 )
 
 [node name="Pig" parent="." instance=ExtResource( 5 )]
 position = Vector2( -571, -78 )
-resurrect_after_death = true
+drop = ExtResource( 2 )
