@@ -43,7 +43,8 @@ func _physics_process(delta):
 	vel = move_and_slide(vel, Vector2.UP)
 
 func can_act():
-	return is_on_floor() and not state_machine.current in [$StateMachine/Attack, $StateMachine/Land]
+	var in_legal_state = state_machine.current in [$StateMachine/Idle, $StateMachine/Run]
+	return is_on_floor() and in_legal_state
 
 func flip_character():
 	facing = sign(player.global_position.x- global_position.x)

@@ -8,9 +8,10 @@ extends AnimatedSprite
 func _ready():
 	hide()
 
-func say(animation):
+func say(line):
 	show()
-	play(animation)
+	play(line)
+	frame = 0
 
 func _on_SpeechBubble_animation_finished():
 	hide()
