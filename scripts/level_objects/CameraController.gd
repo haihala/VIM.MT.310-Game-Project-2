@@ -4,10 +4,12 @@ onready var player = get_node("../Player")
 
 var magnitude = 0
 var dampening = 0
+var lock = false
 
 # tracks the player along the X axis
 func _process (_delta):
-	position.x = player.position.x
+	if not lock:
+		position.x = player.position.x
 
 	randomize()
 	var angle = deg2rad(randi()%360)
