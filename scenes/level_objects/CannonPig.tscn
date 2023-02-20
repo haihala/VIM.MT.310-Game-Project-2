@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://other/pig_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://assets/kings_and_pigs/10-Cannon/Shoot (44x28).png" type="Texture" id=2]
@@ -35,23 +35,33 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="CannonPig" type="Node2D"]
-scale = Vector2( 3, 3 )
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 23.0
+height = 3.0
+
+[node name="CannonPig" type="KinematicBody2D"]
+collision_layer = 4
 script = ExtResource( 4 )
 cannon_ball = ExtResource( 5 )
 
 [node name="Pig" type="AnimatedSprite" parent="."]
-position = Vector2( 30.6667, -3 )
+position = Vector2( 89, -9 )
+scale = Vector2( 3, 3 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 1
+frame = 6
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
 position = Vector2( 0.333332, 0 )
+scale = Vector2( 3, 3 )
 frames = SubResource( 5 )
 animation = "idle"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 98, 9 )
+shape = SubResource( 6 )

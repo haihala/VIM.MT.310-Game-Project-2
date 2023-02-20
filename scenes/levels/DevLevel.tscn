@@ -30,7 +30,4 @@ drop = ExtResource( 2 )
 
 [node name="CannonPig" parent="." instance=ExtResource( 6 )]
 position = Vector2( -160, 0 )
-
-[node name="CannonPig2" parent="." instance=ExtResource( 6 )]
-position = Vector2( -664, -64 )
-scale = Vector2( -3, 3 )
+drop = ExtResource( 2 )
