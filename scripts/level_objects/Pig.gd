@@ -52,16 +52,13 @@ func flip_character():
 		SpriteUtils.flip_sprite(sprite, facing > 0)
 
 func get_hit():
-	print("hit")
 	if state_machine.current == $StateMachine/Die:
 		return
 
-	print("not dead")
 	state_machine.set_state($StateMachine/Hit, true)
 	vel.y -= 500
 	health -= 1
 
-	print(health)
 	if health > 0:
 		$CharacterAudio.hit()
 	else:
@@ -69,16 +66,11 @@ func get_hit():
 
 func animation_done():
 	if health > 0:
-		print("Recover")
 		if is_on_floor():
-			print("Ground")
 			if state_machine.current != $StateMachine/Idle:
-				print("Idle")
 				state_machine.set_state($StateMachine/Idle)
 		else:
-			print("Air")
 			if state_machine.current != $StateMachine/Fall:
-				print("fall")
 				state_machine.set_state($StateMachine/Fall)
 	else:
 		# After getting hit animation is done, it gets here

@@ -70,8 +70,8 @@ func handle_movement(delta):
 	vel = move_and_slide(vel, Vector2.UP)
 
 func handle_landing():
-	if is_on_floor() and not grounded:
-		# Just landed
+	if is_on_floor() and not grounded and not is_dead():
+		# Just landed and didn't die mid-air
 		state_machine.set_state($StateMachine/Land)
 		camera.shake(2)
 		grounded = true
@@ -136,9 +136,12 @@ func die ():
 	var _reload_output = get_tree().reload_current_scene()
 
 func get_hit():
+	if is_dead():
+		return
+	
 	if health > 1:
 		take_damage()
-	elif not is_dead():
+	else:
 		die()
 
 	health_bar.update_hearts(health)
