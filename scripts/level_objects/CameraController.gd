@@ -24,3 +24,7 @@ func _process (_delta):
 func shake(amount = 20, damp = 0.9):
 	magnitude = amount
 	dampening = damp
+
+func reset():
+	position.y = 0
+	lock = false

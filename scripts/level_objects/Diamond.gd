@@ -9,6 +9,5 @@ func _on_Diamond_body_entered(body):
 		if new_scene:
 			level_loader.load_level(new_scene)
 		else:
-			get_tree().reload_current_scene()
-		camera.position.y = 0
-		camera.lock = false
+			var _unused = get_tree().reload_current_scene()
+		camera.reset()
