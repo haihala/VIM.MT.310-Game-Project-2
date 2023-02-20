@@ -87,8 +87,19 @@ func animation_done():
 				speech_bubble.say("grumble")
 				state_machine.set_state($StateMachine/Resurrect)
 			else:
-				if drop:
+				if drop and last_enemy_alive():
 					var instance = drop.instance()
 					instance.position = position
 					get_parent().add_child(instance)
 				queue_free()
+
+func is_dead():
+	return state_machine.current == $StateMachine/Die
+
+func last_enemy_alive():
+	for enemy in get_tree().get_nodes_in_group("Enemy"):
+		if enemy == self:
+			continue
+		if not enemy.is_dead():
+			return false
+	return true

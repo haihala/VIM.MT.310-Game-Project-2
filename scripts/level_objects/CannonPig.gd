@@ -33,19 +33,33 @@ func spawn_projectile():
 	add_child(instance)
 
 func get_hit():
-	if $Pig.animation in ["match", "idle"]:
+	if not is_dead():
 		$Timer.disconnect("timeout", self, "shoot")
 		$Pig.disconnect("animation_finished", self, "activate_cannon")
 		$Cannon.disconnect("animation_finished", self, "fire_ball")
 		if $Pig.animation == "match":
 			$Pig.position.y -= pig_offset
 		$Pig.play("die")
+		$Cannon.play("idle")
 		var _unused = $Pig.connect("animation_finished", self, "die")
 
 func die():
-	if drop:
+	if drop and last_enemy_alive():
 		var instance = drop.instance()
 		instance.position = $Pig.position
 		add_child(instance)
 	$Pig.queue_free()
 	$CollisionShape2D.disabled = true
+
+
+func is_dead():
+	var pig = get_node_or_null("Pig")
+	return pig == null or not pig.animation in ["match", "idle"]
+
+func last_enemy_alive():
+	for enemy in get_tree().get_nodes_in_group("Enemy"):
+		if enemy == self:
+			continue
+		if not enemy.is_dead():
+			return false
+	return true

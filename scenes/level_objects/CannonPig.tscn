@@ -39,7 +39,7 @@ animations = [ {
 radius = 23.0
 height = 3.0
 
-[node name="CannonPig" type="KinematicBody2D"]
+[node name="CannonPig" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource( 4 )
 cannon_ball = ExtResource( 5 )
@@ -49,7 +49,7 @@ position = Vector2( 89, -9 )
 scale = Vector2( 3, 3 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 6
+frame = 2
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]

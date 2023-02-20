@@ -30,8 +30,9 @@ height = 6.0
 radius = 17.0
 height = 42.0
 
-[node name="Pig" type="KinematicBody2D"]
+[node name="Pig" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 4
+collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="StateMachine" type="Node" parent="."]
