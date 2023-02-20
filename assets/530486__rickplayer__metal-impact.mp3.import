@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/530486__rickplayer__metal-impact.mp3-bf849e947d7640b16342818866bb0d4d.mp3str"
+
+[deps]
+
+source_file="res://assets/530486__rickplayer__metal-impact.mp3"
+dest_files=[ "res://.import/530486__rickplayer__metal-impact.mp3-bf849e947d7640b16342818866bb0d4d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

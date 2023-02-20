@@ -7,6 +7,7 @@ export var cannon_ball : PackedScene
 var pig_offset = 15
 export var drop : PackedScene
 var knockback_multiplier = 0
+var vel = Vector2(0,0)	# Unused, but required for being able to hit
 
 func _ready():
 	var _unused = $Timer.connect("timeout", self, "shoot")
@@ -22,6 +23,7 @@ func activate_cannon():
 	if $Pig.animation == "match":
 		$Cannon.play("shoot")
 		$Pig.play("idle")
+		$GunshotSound.play()
 		$Pig.position.y -= pig_offset
 		spawn_projectile()
 
@@ -42,6 +44,7 @@ func get_hit():
 			$Pig.position.y -= pig_offset
 		$Pig.play("die")
 		$Cannon.play("idle")
+		$CharacterAudio.death()
 		var _unused = $Pig.connect("animation_finished", self, "die")
 
 func die():
