@@ -33,13 +33,14 @@ func spawn_projectile():
 	add_child(instance)
 
 func get_hit():
-	$Timer.disconnect("timeout", self, "shoot")
-	$Pig.disconnect("animation_finished", self, "activate_cannon")
-	$Cannon.disconnect("animation_finished", self, "fire_ball")
-	if $Pig.animation == "match":
-		$Pig.position.y -= pig_offset
-	$Pig.play("die")
-	var _unused = $Pig.connect("animation_finished", self, "die")
+	if $Pig.animation in ["match", "idle"]:
+		$Timer.disconnect("timeout", self, "shoot")
+		$Pig.disconnect("animation_finished", self, "activate_cannon")
+		$Cannon.disconnect("animation_finished", self, "fire_ball")
+		if $Pig.animation == "match":
+			$Pig.position.y -= pig_offset
+		$Pig.play("die")
+		var _unused = $Pig.connect("animation_finished", self, "die")
 
 func die():
 	if drop:

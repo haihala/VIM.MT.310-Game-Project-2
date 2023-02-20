@@ -7,8 +7,7 @@ var active = false
 func start_attack():
 	active = true
 	for enemy in enemies_in_range:
-		enemy.get_hit()
-		enemies_hit_this_swing.append(enemy)
+		hit(enemy)
 
 func end_attack():
 	active = false
@@ -17,11 +16,15 @@ func end_attack():
 # Only enemies are on the layer this can hit
 func _on_Hitbox_body_entered(body):
 	if active and not body in enemies_hit_this_swing:
-		body.get_hit()
-		enemies_hit_this_swing.append(body)
+		hit(body)
 	enemies_in_range.append(body)
 
 func _on_Hitbox_body_exited(body):
 	var index = enemies_in_range.find(body)
 	if index != -1:
 		enemies_in_range.remove(index)
+
+func hit(body):
+	body.get_hit()
+	enemies_hit_this_swing.append(body)
+	

@@ -23,11 +23,9 @@ position = Vector2( -560, -48 )
 [node name="Crate2" parent="." instance=ExtResource( 2 )]
 position = Vector2( -296, 16 )
 
-[node name="Pig" parent="." instance=ExtResource( 5 )]
-position = Vector2( 387, -95 )
-resurrect_after_death = true
-drop = ExtResource( 2 )
-
 [node name="CannonPig" parent="." instance=ExtResource( 6 )]
 position = Vector2( -160, 0 )
 drop = ExtResource( 2 )
+
+[node name="Pig2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -743, -58 )
