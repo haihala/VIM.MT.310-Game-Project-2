@@ -6,6 +6,7 @@ export var cannon_ball : PackedScene
 # This causes the pig to move when it changes animations
 var pig_offset = 15
 export var drop : PackedScene
+var knockback_multiplier = 0
 
 func _ready():
 	var _unused = $Timer.connect("timeout", self, "shoot")

@@ -8,18 +8,24 @@ onready var sprite = $AnimatedSprite
 onready var state_machine = $StateMachine
 onready var speech_bubble = $SpeechBubble
 
-var health = 3
+export var health = 3
+export var speed = 90
+export var attack_range = 50
+export var wait_before_acting = 0
+export var knockback_multiplier = 1.0
+
 var vel : Vector2 = Vector2()
-var speed = 90
 var facing = 1
-var attack_range = 50
+var start_time
 
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
 	sprite.connect("animation_finished", self, "animation_done")
+	start_time = OS.get_system_time_msecs()
 
 func _physics_process(delta):
 	flip_character()
+	
 
 	if is_on_floor() and state_machine.current in [$StateMachine/Jump, $StateMachine/Fall]:
 		state_machine.set_state($StateMachine/Land)
@@ -31,8 +37,7 @@ func _physics_process(delta):
 			vel.y -= Constants.jump_impulse
 		elif state_machine.current == $StateMachine/Idle:
 			state_machine.set_state($StateMachine/Run)
-	
-	
+
 	if state_machine.current == $StateMachine/Run:
 		vel.x = speed * facing
 	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land]:
@@ -43,7 +48,8 @@ func _physics_process(delta):
 
 func can_act():
 	var in_legal_state = state_machine.current in [$StateMachine/Idle, $StateMachine/Run]
-	return is_on_floor() and in_legal_state
+	var waiting = OS.get_system_time_msecs() < start_time + 1000*wait_before_acting
+	return is_on_floor() and in_legal_state and not waiting
 
 func flip_character():
 	facing = sign(player.global_position.x- global_position.x)
@@ -56,7 +62,6 @@ func get_hit():
 		return
 
 	state_machine.set_state($StateMachine/Hit, true)
-	vel.y -= 500
 	health -= 1
 
 	if health > 0:

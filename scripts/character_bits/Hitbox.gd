@@ -1,5 +1,6 @@
 extends Area2D
 
+export var knockback = Vector2(0,-200)
 var enemies_in_range = []
 var enemies_hit_this_swing = []
 var active = false
@@ -25,6 +26,7 @@ func _on_Hitbox_body_exited(body):
 		enemies_in_range.remove(index)
 
 func hit(body):
+	body.vel += body.knockback_multiplier * knockback
 	body.get_hit()
 	enemies_hit_this_swing.append(body)
 	

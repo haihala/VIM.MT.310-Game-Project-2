@@ -10,6 +10,7 @@ var ground_speed_influence : float = 200
 var ground_friction : float = 10
 var air_speed_influence : float = 20
 var air_friction : float = 1
+var knockback_multiplier = 1
 
 onready var state_machine = $StateMachine
 onready var sprite = $AnimatedSprite
