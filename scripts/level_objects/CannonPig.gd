@@ -1,17 +1,22 @@
 extends Node2D
 
+export var shot_offset = 0.0
+export var drop : PackedScene
 export var cannon_ball : PackedScene
 
 # Idle animation is from a different sized tile sheet
 # This causes the pig to move when it changes animations
 var pig_offset = 13
-export var drop : PackedScene
 var health = 1
 
 func _ready():
 	var _unused = $Timer.connect("timeout", self, "shoot")
 	_unused = $Pig.connect("animation_finished", self, "activate_cannon")
 	_unused = $Cannon.connect("animation_finished", self, "fire_ball")
+
+	$Timer.stop()
+	yield(get_tree().create_timer(shot_offset), "timeout")
+	$Timer.start()
 
 func shoot():
 	if $Pig.animation != "match":

@@ -25,3 +25,8 @@ position = Vector2( -296, 16 )
 [node name="CannonPig" parent="." instance=ExtResource( 5 )]
 position = Vector2( -416, -32 )
 scale = Vector2( -1, 1 )
+
+[node name="CannonPig2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -600, -64 )
+scale = Vector2( -1, 1 )
+shot_offset = 1.0
