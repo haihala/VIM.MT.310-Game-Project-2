@@ -4,8 +4,9 @@ export var cannon_ball : PackedScene
 
 # Idle animation is from a different sized tile sheet
 # This causes the pig to move when it changes animations
-var pig_offset = 15
+var pig_offset = 13
 export var drop : PackedScene
+var health = 1
 
 func _ready():
 	var _unused = $Timer.connect("timeout", self, "shoot")
@@ -34,18 +35,28 @@ func spawn_projectile():
 	add_child(instance)
 
 func get_hit():
-	if not is_dead():
+	if health:
+		health = 0
+
 		$Timer.disconnect("timeout", self, "shoot")
 		$Pig.disconnect("animation_finished", self, "activate_cannon")
 		$Cannon.disconnect("animation_finished", self, "fire_ball")
+		
+		$Cannon.play("idle")
+
 		if $Pig.animation == "match":
 			$Pig.position.y -= pig_offset
-		$Pig.play("die")
-		$Cannon.play("idle")
+		$Pig.play("hit")
 		$CharacterAudio.death()
-		var _unused = $Pig.connect("animation_finished", self, "die")
 
-func die():
+		var _unused = $Pig.connect("animation_finished", self, "death_animation")
+
+func death_animation():
+	$Pig.play("die")
+	$Pig.disconnect("animation_finished", self, "death_animation")
+	var _unused = $Pig.connect("animation_finished", self, "finish_dying")
+
+func finish_dying():
 	if drop and last_enemy_alive():
 		var instance = drop.instance()
 		instance.position = $Pig.position
@@ -53,10 +64,8 @@ func die():
 	$Pig.queue_free()
 	$CollisionShape2D.disabled = true
 
-
 func is_dead():
-	var pig = get_node_or_null("Pig")
-	return pig == null or not pig.animation in ["match", "idle"]
+	return health > 0
 
 func last_enemy_alive():
 	for enemy in get_tree().get_nodes_in_group("Enemy"):

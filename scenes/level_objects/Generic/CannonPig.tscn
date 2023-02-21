@@ -57,11 +57,10 @@ script = ExtResource( 4 )
 cannon_ball = ExtResource( 5 )
 
 [node name="Pig" type="AnimatedSprite" parent="."]
-position = Vector2( 89, -9 )
-scale = Vector2( 3, 3 )
+position = Vector2( 78, 0 )
+scale = Vector2( 2, 2.5 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 7
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
@@ -75,7 +74,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 98, 9 )
+position = Vector2( 83, 12 )
 shape = SubResource( 6 )
 
 [node name="CharacterAudio" parent="." instance=ExtResource( 16 )]
