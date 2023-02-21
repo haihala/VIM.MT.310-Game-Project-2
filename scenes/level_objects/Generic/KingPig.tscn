@@ -86,7 +86,7 @@ script = ExtResource( 8 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "run"
-frame = 2
+frame = 1
 playing = true
 offset = Vector2( -3, -6 )
 
@@ -117,5 +117,6 @@ shape = SubResource( 25 )
 [node name="SpeechBubble" parent="." instance=ExtResource( 13 )]
 visible = false
 
+[connection signal="attack_landed" from="Hitbox" to="StateMachine/Attack" method="_on_Hitbox_attack_landed"]
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
 [connection signal="body_exited" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_exited"]

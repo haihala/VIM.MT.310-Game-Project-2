@@ -7,8 +7,7 @@ var active = false
 
 func start_attack():
 	active = true
-	for enemy in enemies_in_range:
-		hit(enemy)
+	hit(enemies_in_range)
 
 func end_attack():
 	active = false
@@ -17,7 +16,7 @@ func end_attack():
 # Only enemies are on the layer this can hit
 func _on_Hitbox_body_entered(body):
 	if active and not body in enemies_hit_this_swing:
-		hit(body)
+		hit([body])
 	enemies_in_range.append(body)
 
 func _on_Hitbox_body_exited(body):
@@ -25,13 +24,18 @@ func _on_Hitbox_body_exited(body):
 	if index != -1:
 		enemies_in_range.remove(index)
 
-func hit(body):
-	if body.get("vel") != null:
-		var kb_mul = 1
-		var maybe_kb_mul = body.get("knockback_multiplier")
-		if maybe_kb_mul != null:
-			kb_mul = maybe_kb_mul
-		body.vel += kb_mul * knockback
-	body.get_hit()
-	enemies_hit_this_swing.append(body)
+signal attack_landed
+
+func hit(bodies):
+	for body in bodies:
+		if body.get("vel") != null:
+			var kb_mul = 1
+			var maybe_kb_mul = body.get("knockback_multiplier")
+			if maybe_kb_mul != null:
+				kb_mul = maybe_kb_mul
+			body.vel += kb_mul * knockback
+		body.get_hit()
+		enemies_hit_this_swing.append(body)
 	
+	if len(bodies) >= 1:
+		emit_signal("attack_landed")

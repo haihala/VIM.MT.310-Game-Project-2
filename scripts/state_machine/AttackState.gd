@@ -28,3 +28,7 @@ func exit():
 	# End the attack if state interrupted, for example when getting hit
 	if hitbox.active:
 		hitbox.end_attack()
+
+
+func _on_Hitbox_attack_landed():
+	HitStop.hit_stop(get_tree(), 0.2)

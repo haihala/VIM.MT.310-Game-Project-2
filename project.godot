@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://scripts/state_machine/AttackState.gd"
 }, {
 "base": "Reference",
+"class": "HitStop",
+"language": "GDScript",
+"path": "res://scripts/utils/HitStop.gd"
+}, {
+"base": "Reference",
 "class": "SpriteUtils",
 "language": "GDScript",
 "path": "res://scripts/utils/SpriteUtils.gd"
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AnimatedState": "",
 "AttackState": "",
+"HitStop": "",
 "SpriteUtils": "",
 "State": "",
 "StateMachine": ""

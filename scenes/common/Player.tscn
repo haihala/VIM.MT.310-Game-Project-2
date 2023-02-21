@@ -62,7 +62,7 @@ animation = "hit"
 scale = Vector2( 2, 2 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 9
+frame = 2
 playing = true
 offset = Vector2( 7, 0 )
 
@@ -79,3 +79,5 @@ position = Vector2( 0, 25 )
 knockback = Vector2( 0, -500 )
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 11 )]
+
+[connection signal="attack_landed" from="Hitbox" to="StateMachine/Attack" method="_on_Hitbox_attack_landed"]

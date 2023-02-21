@@ -29,5 +29,6 @@ func _on_Collider_body_shape_entered(_body_rid, body, _body_shape_index, _local_
 
 func hit(body):
 	if body.has_method("get_hit") and active:
+		HitStop.hit_stop(get_tree(), 0.3)
 		body.get_hit()
 		active = false
