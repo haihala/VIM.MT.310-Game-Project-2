@@ -17,7 +17,7 @@ position = Vector2( -66, 310 )
 script = ExtResource( 1 )
 new_y = 1300.0
 boss = ExtResource( 2 )
-boss_spawn_points = [ Vector2( -500, 1500 ), Vector2( 400, 1500 ) ]
+boss_spawn_points = [ Vector2( -500, 1500 ), Vector2( 350, 1500 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossFightTrigger"]
 position = Vector2( 1.5, 0 )
