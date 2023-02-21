@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/level_objects/BossFightTrigger.gd" type="Script" id=1]
-[ext_resource path="res://scenes/level_objects/Round 1/KingPig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/level_objects/Round 4/KingPig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level_objects/Generic/TileMap.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -17,7 +17,7 @@ position = Vector2( -66, 310 )
 script = ExtResource( 1 )
 new_y = 1300.0
 boss = ExtResource( 2 )
-boss_spawn_points = [ Vector2( -500, 1500 ) ]
+boss_spawn_points = [ Vector2( -500, 1500 ), Vector2( 400, 1500 ) ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossFightTrigger"]
 position = Vector2( 1.5, 0 )
@@ -26,8 +26,8 @@ shape = SubResource( 1 )
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = 78.0
 margin_top = -10.0
-margin_right = 262.0
+margin_right = 272.0
 margin_bottom = 30.0
-text = "This is where the fun begins"
+text = "I'm sure you'll get it this time"
 
 [connection signal="body_entered" from="BossFightTrigger" to="BossFightTrigger" method="_on_CamTeleportTrigger_body_entered"]

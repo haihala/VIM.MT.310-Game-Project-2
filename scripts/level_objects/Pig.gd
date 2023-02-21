@@ -27,7 +27,14 @@ func _ready():
 		wait_before_acting = 3
 
 func _physics_process(delta):
-	if state_machine.current != $StateMachine/ChargeAttack:
+	var can_flip = true
+	# Done this way as regular pigs use the same script and don't have the charge states
+	var charge_attack = get_node_or_null("StateMachine/ChargeAttack")
+	if charge_attack:
+		if state_machine.current == $StateMachine/ChargeAttack:
+			can_flip = false
+
+	if can_flip:
 		flip_character()
 
 	if is_on_floor() and state_machine.current in [$StateMachine/Jump, $StateMachine/Fall]:
@@ -48,9 +55,9 @@ func _physics_process(delta):
 
 	if state_machine.current == $StateMachine/Run:
 		vel.x = speed * facing
-	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land, $StateMachine/Charge]:
+	elif should_stop_momentum():
 		vel.x = 0
-	elif state_machine.current == $StateMachine/ChargeAttack:
+	elif state_machine.current == charge_attack:
 		vel.x -= facing*speed*0.1
 
 	vel.y += Constants.gravity * delta
@@ -66,6 +73,13 @@ func flip_character():
 	if can_act():
 		$Hitbox.scale.x = -facing
 		SpriteUtils.flip_sprite(sprite, facing > 0)
+
+func should_stop_momentum():
+	var states = [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land]
+	var charge_state = get_node_or_null("StateMachine/Charge")
+	if charge_state:
+		states.append(charge_state)
+	return state_machine.current in states
 
 func get_hit():
 	if state_machine.current == $StateMachine/Die:
@@ -86,7 +100,7 @@ func get_hit():
 func animation_done():
 	if health > 0:
 		if is_on_floor():
-			if state_machine.current == $StateMachine/Charge:
+			if state_machine.current == get_node_or_null("StateMachine/Charge"):
 				if $StateMachine/Charge.done_charging():
 					state_machine.set_state($StateMachine/ChargeAttack)
 					vel.x = 6*speed*facing

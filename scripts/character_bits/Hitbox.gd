@@ -28,12 +28,13 @@ signal attack_landed
 
 func hit(bodies):
 	for body in bodies:
-		if body.get("vel") != null and not body.is_dead():
-			var kb_mul = 1
-			var maybe_kb_mul = body.get("knockback_multiplier")
-			if maybe_kb_mul != null:
-				kb_mul = maybe_kb_mul
-			body.vel += kb_mul * knockback
+		if body.get("vel") != null and body.has_method("is_dead"):
+			if not body.is_dead():
+				var kb_mul = 1
+				var maybe_kb_mul = body.get("knockback_multiplier")
+				if maybe_kb_mul != null:
+					kb_mul = maybe_kb_mul
+				body.vel += kb_mul * knockback
 		body.get_hit()
 		enemies_hit_this_swing.append(body)
 	

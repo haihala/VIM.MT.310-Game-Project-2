@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/kings_and_pigs/12-Live and Coins/Big Diamond Idle (18x14).png" type="Texture" id=1]
 [ext_resource path="res://scripts/level_objects/Diamond.gd" type="Script" id=2]
-[ext_resource path="res://scenes/levels/Round 1/Level1.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 15.0
@@ -59,7 +58,7 @@ animations = [ {
 collision_layer = 8
 collision_mask = 0
 script = ExtResource( 2 )
-new_scene = ExtResource( 3 )
+final = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -67,7 +66,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )
 frames = SubResource( 12 )
-frame = 4
+frame = 9
 playing = true
 offset = Vector2( -2, 1 )
 
