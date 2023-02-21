@@ -17,3 +17,7 @@ drop = ExtResource( 5 )
 [node name="Pig" parent="." instance=ExtResource( 1 )]
 position = Vector2( 110, 234 )
 drop = ExtResource( 5 )
+
+[node name="Pig2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 264, 232 )
+drop = ExtResource( 5 )

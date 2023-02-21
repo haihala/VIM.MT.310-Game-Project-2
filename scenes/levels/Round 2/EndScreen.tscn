@@ -14,12 +14,12 @@ margin_top = 112.0
 margin_right = 52.0
 margin_bottom = 192.0
 bbcode_enabled = true
-bbcode_text = "[center]The game is over and nothing has changed[/center]
+bbcode_text = "[center]Here again[/center]
 
-[center]Were you entertained?[/center]"
-text = "The game is over and nothing has changed
+[center]I'm impressed[/center]"
+text = "Here again
 
-Were you entertained?"
+I'm impressed"
 
 [node name="Diamond" parent="." instance=ExtResource( 1 )]
 position = Vector2( 292, 36 )

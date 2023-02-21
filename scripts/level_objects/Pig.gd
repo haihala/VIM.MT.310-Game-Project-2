@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export var resurrect_after_death : bool
 export var drop : PackedScene
+export var king_level = 0
 
 onready var player = get_node("/root/MainScene/Common/Player")
 onready var sprite = $AnimatedSprite
@@ -11,9 +12,9 @@ onready var speech_bubble = $SpeechBubble
 export var health = 3
 export var speed = 90
 export var attack_range = 50
-export var wait_before_acting = 0
 export var knockback_multiplier = 1.0
 
+var wait_before_acting = 0
 var vel : Vector2 = Vector2()
 var facing = 1
 var start_time
@@ -22,6 +23,8 @@ func _ready():
 	state_machine.set_state($StateMachine/Idle)
 	sprite.connect("animation_finished", self, "animation_done")
 	start_time = OS.get_system_time_msecs()
+	if king_level == 1:
+		wait_before_acting = 3
 
 func _physics_process(delta):
 	flip_character()
@@ -59,6 +62,10 @@ func flip_character():
 
 func get_hit():
 	if state_machine.current == $StateMachine/Die:
+		return
+
+	# Disallow hitting high level kings
+	if king_level >= 2 and state_machine.current in [$StateMachine/Attack, $StateMachine/Hit]:
 		return
 
 	state_machine.set_state($StateMachine/Hit, true)
