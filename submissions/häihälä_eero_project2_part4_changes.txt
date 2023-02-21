@@ -29,10 +29,12 @@ Animations were from the kings and pigs pack.
 
 Added a king pig as a boss. Assets were from the previously listed sources.
 
-
 # Levels
 
-- Added a three stage tutorial that explains the mechanics of the game.
 - Added a start screen that lets you pick a level
-- Added an end screen that provides a hollow congratulation and an opportunity to play again
+- Added a three stage tutorial that explains the mechanics of the game.
 - Added three levels that test the player with various trials, culminating in a boss fight.
+- Added an end screen that provides a hollow congratulation and an opportunity to play again
+- If player plays again, they get taken to the next round with similar but harder levels. There are a total of four rounds with the last ones being rather difficult.
+
+It took about 25 mins to complete by an unaware playtester without assistance.

@@ -28,6 +28,6 @@ margin_left = 78.0
 margin_top = -10.0
 margin_right = 272.0
 margin_bottom = 30.0
-text = "I'm sure you'll get it this time"
+text = "The final hurdle"
 
 [connection signal="body_entered" from="BossFightTrigger" to="BossFightTrigger" method="_on_CamTeleportTrigger_body_entered"]

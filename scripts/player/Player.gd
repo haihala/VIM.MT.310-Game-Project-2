@@ -36,13 +36,14 @@ func _physics_process (delta):
 	flip_character()
 
 func movement_input():
-	if Input.is_action_pressed("move_left"):
-		delta_x -= 1
-	if Input.is_action_pressed("move_right"):
-		delta_x += 1
-	handle_running_state_transitions(delta_x)
+	if can_move():
+		if Input.is_action_pressed("move_left"):
+			delta_x -= 1
+		if Input.is_action_pressed("move_right"):
+			delta_x += 1
 
-	jumping = is_on_floor() and Input.is_action_pressed("jump")
+		jumping = is_on_floor() and Input.is_action_pressed("jump")
+	handle_running_state_transitions(delta_x)
 
 
 func handle_movement(delta):
