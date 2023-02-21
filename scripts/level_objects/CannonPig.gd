@@ -70,7 +70,7 @@ func finish_dying():
 	$CollisionShape2D.disabled = true
 
 func is_dead():
-	return health > 0
+	return health <= 0
 
 func last_enemy_alive():
 	for enemy in get_tree().get_nodes_in_group("Enemy"):
