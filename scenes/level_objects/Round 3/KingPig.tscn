@@ -29,8 +29,8 @@ radius = 26.0
 height = 26.0
 
 [sub_resource type="CapsuleShape2D" id=25]
-radius = 25.2592
-height = 41.023
+radius = 37.2746
+height = 54.2264
 
 [node name="KingPig" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 4
@@ -96,8 +96,8 @@ script = ExtResource( 8 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
-animation = "charge_attack"
-frame = 4
+animation = "attack"
+frame = 1
 playing = true
 offset = Vector2( -3, -6 )
 
@@ -121,8 +121,8 @@ script = ExtResource( 11 )
 knockback = Vector2( 0, -500 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( -53, -29 )
-rotation = -0.218166
+position = Vector2( -33, -16 )
+rotation = -0.506145
 shape = SubResource( 25 )
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 13 )]
