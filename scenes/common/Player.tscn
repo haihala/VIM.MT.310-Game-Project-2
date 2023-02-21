@@ -80,4 +80,5 @@ knockback = Vector2( 0, -500 )
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 11 )]
 
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="animation_finished"]
 [connection signal="attack_landed" from="Hitbox" to="StateMachine/Attack" method="_on_Hitbox_attack_landed"]

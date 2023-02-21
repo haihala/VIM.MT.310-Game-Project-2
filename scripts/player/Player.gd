@@ -19,44 +19,46 @@ onready var health_bar = get_node("../CanvasLayer/UI/HealthBar")
 onready var camera = get_node("../Camera")
 
 var state_after_animation
+var delta_x = 0
+var jumping = false
 
 func _ready():
 	state_machine.set_state($StateMachine/Idle)
-	sprite.connect("animation_finished", self, "animation_finished")
 
 func _physics_process (delta):
-	handle_landing()
-	handle_falling()
+	if not is_dead():
+		handle_landing()
+		handle_falling()
+		movement_input()
+		handle_attacking()
 	handle_movement(delta)
-	handle_attacking()
 	flip_character()
 
+func movement_input():
+	if Input.is_action_pressed("move_left"):
+		delta_x -= 1
+	if Input.is_action_pressed("move_right"):
+		delta_x += 1
+	handle_running_state_transitions(delta_x)
+
+	jumping = is_on_floor() and Input.is_action_pressed("jump")
+
+
 func handle_movement(delta):
-	var influence = 0
-	var friction = speed	# Default to a high number in case the player dies
-	var delta_x = 0
-	
-	if can_move():
-		if Input.is_action_pressed("move_left"):
-			delta_x -= 1
-		if Input.is_action_pressed("move_right"):
-			delta_x += 1
+	if jumping:
+		state_machine.set_state($StateMachine/Jump)
+		state_after_animation = $StateMachine/Fall
+		grounded = false
+		vel.y -= Constants.jump_impulse
+		jumping = false
 
-		handle_running(delta_x)
+	var influence = air_speed_influence
+	var friction = air_friction
 
-		if is_on_floor():
-			if Input.is_action_pressed("jump"):
-				state_machine.set_state($StateMachine/Jump)
-				state_after_animation = $StateMachine/Fall
-				grounded = false
-				vel.y -= Constants.jump_impulse
-			influence = ground_speed_influence
-			friction = ground_friction
-		else:
-			influence = air_speed_influence
-			friction = air_friction
+	if is_on_floor() or is_dead():	# Also use higher friction if dead
+		influence = ground_speed_influence
+		friction = ground_friction
 
-	# Add influence
 	vel.x += (delta_x * influence)
 	
 	# Friction
@@ -69,9 +71,10 @@ func handle_movement(delta):
 	vel.x = clamp(vel.x, -speed, speed)
 	vel.y += Constants.gravity*delta
 	vel = move_and_slide(vel, Vector2.UP)
+	delta_x = 0	# Set this here, as that means when the player dies they don't slide
 
 func handle_landing():
-	if is_on_floor() and not grounded and not is_dead():
+	if is_on_floor() and not grounded:
 		# Just landed and didn't die mid-air
 		state_machine.set_state($StateMachine/Land)
 		camera.shake(2)
@@ -85,7 +88,7 @@ func handle_falling():
 		if state_machine.current != $StateMachine/Jump:
 			state_machine.set_state($StateMachine/Fall)
 
-func handle_running(direction):
+func handle_running_state_transitions(direction):
 	if is_on_floor():
 		if direction != 0 and state_machine.current == $StateMachine/Idle:
 			state_machine.set_state($StateMachine/Run)
@@ -95,25 +98,33 @@ func handle_running(direction):
 
 func handle_attacking():
 	if Input.is_action_pressed("attack"):
-		if state_machine.current != $StateMachine/Attack:
-			if is_on_floor():
-				# Only attacking on the floor for now
-				state_machine.set_state($StateMachine/Attack)
-				state_after_animation = $StateMachine/Idle
+		if state_machine.current != $StateMachine/Attack and grounded:
+			# Only attacking on the floor for now
+			state_machine.set_state($StateMachine/Attack)
+			state_after_animation = $StateMachine/Idle
 
 func flip_character():
 	if abs(vel.x) > 0:
 		SpriteUtils.flip_sprite(sprite, vel.x < 0)
 		$Hitbox.scale.x = sign(vel.x)
 
-
 func can_move():
-	var mid_attack = state_machine.current == $StateMachine/Attack
-	var mid_landing = state_machine.current == $StateMachine/Land
-	return not (is_dead() or mid_landing or mid_attack)
+	return (not is_dead()) and (not state_machine.current in [$StateMachine/Attack, $StateMachine/Land])
 
 func is_dead():
-	return state_machine.current == $StateMachine/Die
+	return health <= 0
+
+
+func get_hit():
+	if is_dead():
+		return
+	
+	if health > 1:
+		take_damage()
+	else:
+		die()
+
+	health_bar.update_hearts(health)
 
 func take_damage():
 	health -= 1
@@ -126,26 +137,19 @@ func take_damage():
 
 func die ():
 	health = 0
-
-	state_machine.set_state($StateMachine/Die)
+	
+	state_machine.set_state($StateMachine/Hit)
+	state_after_animation = $StateMachine/Die
 	camera.shake(20, 0.97)
 	$CharacterAudio.death()
 	$SpeechBubble.say("no")
 	
-	yield(get_tree().create_timer(4), "timeout")
+	var _unused = get_tree().create_timer(4).connect("timeout", self, "respawn")
+
+func respawn():
 	# There is a warning if the output is not collected to a variable
-	var _reload_output = get_tree().reload_current_scene()
-
-func get_hit():
-	if is_dead():
-		return
+	var _unused = get_tree().reload_current_scene()
 	
-	if health > 1:
-		take_damage()
-	else:
-		die()
-
-	health_bar.update_hearts(health)
 
 func animation_finished():
 	if state_after_animation:
