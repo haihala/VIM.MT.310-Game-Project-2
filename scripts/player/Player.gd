@@ -17,6 +17,7 @@ onready var sprite = $AnimatedSprite
 onready var ui = get_node("../CanvasLayer/UI")
 onready var health_bar = get_node("../CanvasLayer/UI/HealthBar")
 onready var camera = get_node("../Camera")
+onready var level_loader = get_node("/root/MainScene/LevelLoader")
 
 var state_after_animation
 var delta_x = 0
@@ -144,12 +145,13 @@ func die ():
 	$CharacterAudio.death()
 	$SpeechBubble.say("no")
 	
-	var _unused = get_tree().create_timer(4).connect("timeout", self, "respawn")
+	var _unused = get_tree().create_timer(4).connect("timeout", level_loader, "reload")
 
-func respawn():
-	# There is a warning if the output is not collected to a variable
-	var _unused = get_tree().reload_current_scene()
-	
+func reset(new_position):
+	position = new_position
+	health = 3
+	if is_instance_valid(health_bar):
+		health_bar.update_hearts(health)
 
 func animation_finished():
 	if state_after_animation:

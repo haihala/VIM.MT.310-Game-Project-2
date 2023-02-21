@@ -61,7 +61,7 @@ position = Vector2( 78, 0 )
 scale = Vector2( 2, 2.5 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 4
+frame = 8
 playing = true
 
 [node name="Cannon" type="AnimatedSprite" parent="."]
