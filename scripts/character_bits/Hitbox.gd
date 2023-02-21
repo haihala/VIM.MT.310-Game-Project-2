@@ -26,7 +26,12 @@ func _on_Hitbox_body_exited(body):
 		enemies_in_range.remove(index)
 
 func hit(body):
-	body.vel += body.knockback_multiplier * knockback
+	if body.get("vel") != null:
+		var kb_mul = 1
+		var maybe_kb_mul = body.get("knockback_multiplier")
+		if maybe_kb_mul != null:
+			kb_mul = maybe_kb_mul
+		body.vel += kb_mul * knockback
 	body.get_hit()
 	enemies_hit_this_swing.append(body)
 	

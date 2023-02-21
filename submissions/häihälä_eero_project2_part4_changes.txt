@@ -24,7 +24,6 @@ https://freesound.org/people/SamsterBirdies/sounds/581597/
 
 Animations were from the kings and pigs pack.
 
-
 ## King Pig
 
 Added a king pig as a boss. Assets were from the previously listed sources.

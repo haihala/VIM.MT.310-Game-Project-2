@@ -3,7 +3,7 @@
 [ext_resource path="res://other/king_pig_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/level_objects/Pig.gd" type="Script" id=2]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_1.wav" type="AudioStream" id=3]
-[ext_resource path="res://scenes/level_objects/DiamondToEndScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/level_objects/Round 1/DiamondToEndScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/24_orc_death_spin.wav" type="AudioStream" id=5]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=8]
@@ -86,6 +86,7 @@ script = ExtResource( 8 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "run"
+frame = 2
 playing = true
 offset = Vector2( -3, -6 )
 
