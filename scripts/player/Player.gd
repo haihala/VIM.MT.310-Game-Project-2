@@ -150,6 +150,10 @@ func die ():
 func reset(new_position):
 	position = new_position
 	health = 3
+
+	# These checks are needed for initial level load
+	if is_instance_valid(camera):
+		camera.reset()
 	if is_instance_valid(health_bar):
 		health_bar.update_hearts(health)
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://other/king_pig_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/level_objects/Pig.gd" type="Script" id=2]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/21_orc_damage_1.wav" type="AudioStream" id=3]
-[ext_resource path="res://scenes/level_objects/Round 2/DiamondToEndScreen.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/level_objects/Round 3/DiamondToEndScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Minifantasy_Dungeon_SFX/24_orc_death_spin.wav" type="AudioStream" id=5]
+[ext_resource path="res://scripts/state_machine/ChargeState.gd" type="Script" id=6]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=8]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=10]
@@ -36,7 +37,7 @@ collision_layer = 4
 collision_mask = 5
 script = ExtResource( 2 )
 drop = ExtResource( 4 )
-king_level = 2
+king_level = 3
 health = 5
 speed = 120
 attack_range = 80
@@ -63,6 +64,16 @@ animation = "attack"
 first_active_frame = 2
 last_active_frame = 3
 
+[node name="ChargeAttack" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+animation = "charge_attack"
+first_active_frame = 1
+last_active_frame = 2
+
+[node name="Charge" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+animation = "charge"
+
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource( 19 )
 animation = "run"
@@ -85,13 +96,13 @@ script = ExtResource( 8 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
-animation = "idle"
-frame = 6
+animation = "charge_attack"
+frame = 4
 playing = true
 offset = Vector2( -3, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -9, -7 )
+position = Vector2( -7, -9 )
 shape = SubResource( 13 )
 
 [node name="CharacterAudio" parent="." instance=ExtResource( 29 )]

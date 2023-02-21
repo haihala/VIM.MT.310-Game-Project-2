@@ -27,24 +27,31 @@ func _ready():
 		wait_before_acting = 3
 
 func _physics_process(delta):
-	flip_character()
-	
+	if state_machine.current != $StateMachine/ChargeAttack:
+		flip_character()
 
 	if is_on_floor() and state_machine.current in [$StateMachine/Jump, $StateMachine/Fall]:
 		state_machine.set_state($StateMachine/Land)
 	elif can_act():
-		if abs(player.global_position.x-global_position.x) < attack_range:
+		var distance = abs(player.global_position.x-global_position.x)
+		
+		if distance < attack_range:
 			state_machine.set_state($StateMachine/Attack)
 		elif is_on_wall():
 			state_machine.set_state($StateMachine/Jump)
 			vel.y -= Constants.jump_impulse
+		elif king_level >= 3 and distance > 2*attack_range:
+			if state_machine.current != $StateMachine/Charge:
+				state_machine.set_state($StateMachine/Charge)
 		elif state_machine.current == $StateMachine/Idle:
 			state_machine.set_state($StateMachine/Run)
 
 	if state_machine.current == $StateMachine/Run:
 		vel.x = speed * facing
-	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land]:
+	elif state_machine.current in [$StateMachine/Attack, $StateMachine/Die, $StateMachine/Land, $StateMachine/Charge]:
 		vel.x = 0
+	elif state_machine.current == $StateMachine/ChargeAttack:
+		vel.x -= facing*speed*0.1
 
 	vel.y += Constants.gravity * delta
 	vel = move_and_slide(vel, Vector2.UP)
@@ -79,7 +86,11 @@ func get_hit():
 func animation_done():
 	if health > 0:
 		if is_on_floor():
-			if state_machine.current != $StateMachine/Idle:
+			if state_machine.current == $StateMachine/Charge:
+				if $StateMachine/Charge.done_charging():
+					state_machine.set_state($StateMachine/ChargeAttack)
+					vel.x = 6*speed*facing
+			elif state_machine.current != $StateMachine/Idle:
 				state_machine.set_state($StateMachine/Idle)
 		else:
 			if state_machine.current != $StateMachine/Fall:

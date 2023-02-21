@@ -32,3 +32,4 @@ func exit():
 
 func _on_Hitbox_attack_landed():
 	HitStop.hit_stop(get_tree(), 0.3)
+
