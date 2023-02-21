@@ -15,7 +15,7 @@ func enter():
 		hitbox.start_attack()
 
 func active(_delta):
-	if sprite.frame >= last_active_frame:
+	if sprite.frame > last_active_frame:
 		# Early ending
 		if hitbox.active:
 			hitbox.end_attack()

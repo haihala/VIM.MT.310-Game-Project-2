@@ -74,6 +74,7 @@ animation = "land"
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+animation = "fall"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 3, 3 )

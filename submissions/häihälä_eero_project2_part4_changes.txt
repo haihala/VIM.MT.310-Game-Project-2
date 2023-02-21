@@ -38,3 +38,86 @@ Added a king pig as a boss. Assets were from the previously listed sources.
 - If player plays again, they get taken to the next round with similar but harder levels. There are a total of four rounds with the last ones being rather difficult.
 
 It took about 25 mins to complete by an unaware playtester without assistance.
+
+# Game design ramblings
+
+## Levels
+
+Every level in the game should show the player something new.
+
+### Round 1
+#### Level select
+- Diamonds transport you to new levels
+
+#### Tutorial
+- Controls in more detail
+- Obtuse messages that contrasts with the assets
+- Combat against basic pigs
+- Pigs drop diamonds sometimes
+
+#### Level 1
+- Cannon pigs exist
+- Cannon balls can be avoided by going under them
+- Sometimes you have to jump over the cannon balls
+
+#### Level 2
+- Diamonds drop when the last enemy dies
+- Sometimes you need to juggle multiple enemies
+
+#### Level 3
+- Bosses exist
+
+#### End screen
+- The game doesn't care if you play it. It would probably even prefer if you didn't.
+
+### Round 2
+#### Level select
+- There is no tutorial diamond -> Something has changed -> Game changes even when it said it didn't
+
+#### Level 1
+- You only need to be one tile lower than the cannon to get under the cannon balls
+
+#### Level 2
+- Pigs will get stuck on each other
+- Multiple regular pigs don't pose significantly more of a threat than single regular pigs
+
+#### Level 3
+- The boss evolves
+	- Round 2 onwards the boss can't be hit when it's attacking or already getting hit
+
+Giving players a sense of cheating the game is effective.
+Many games do it, but the boss evolution makes the player aware that the game knows it's being cheated.
+You can sit still and hold the attack button to beat the Round 1 boss, as it gets stunlocked very easily.
+Your tactics may become obsolete and you should look out for that.
+
+### Round 3
+#### Level 1
+- You never needed the holes in the ground to avoid the balls, as the ceiling was high enough to jump over
+
+#### Level 2
+- Multiple cannons can exist on a level, they are still a higher priority than the standard pigs
+
+#### Level 3
+- The boss develops a charge move
+- Kiting is good and all, but you can't get too far
+	- Well you can, but you need to hit the pig when it's charging towards you
+- Before this point the boss has a blindspot if you stand on top of him, but that stops working here.
+
+### Round 4
+#### Level 1
+- You can still jump over the cannon balls, even with the low ceiling
+
+#### Level 2
+- Multiple cannons start forming a pattern
+
+#### Level 3
+- Good old double boss move.
+	- They even play together somewhat.
+- You remember when you could hit the king when it's charging towards you? You ought to try something else now.
+	- If you hit a pig while they are attacking, you do get a parry, push them back somewhat and avoid the damage, but you won't hurt them.
+
+## Pacing
+
+The second level of each round is intentionally easier than the one before or after.
+The first and the third level are the hardest and the second level gives the player a breather after the first while the levels without enemies give a break after level 3.
+

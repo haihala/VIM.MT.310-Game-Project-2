@@ -106,7 +106,7 @@ func handle_attacking():
 			state_after_animation = $StateMachine/Idle
 
 func flip_character():
-	if abs(vel.x) > 0:
+	if abs(vel.x) > 5:	# Keep same side for near-zero speeds
 		SpriteUtils.flip_sprite(sprite, vel.x < 0)
 		$Hitbox.scale.x = sign(vel.x)
 

@@ -12,6 +12,7 @@ tile_data = PoolIntArray( -917532, 1, 0, -917531, 1, 1, -917530, 1, 1, -917529, 
 
 [node name="CannonPig" parent="." instance=ExtResource( 3 )]
 position = Vector2( 514, 225 )
+shot_offset = 1.0
 drop = ExtResource( 2 )
 
 [node name="CannonPig2" parent="." instance=ExtResource( 3 )]

@@ -1,7 +1,5 @@
 extends AnimatedState
 
-export var strike_animation : String
-
 var loops_until_takeoff = 3
 var loops = 0
 

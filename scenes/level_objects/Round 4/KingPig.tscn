@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://other/king_pig_animations.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scripts/level_objects/Pig.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/state_machine/ChargeState.gd" type="Script" id=6]
 [ext_resource path="res://scripts/state_machine/StateMachine.gd" type="Script" id=7]
 [ext_resource path="res://scripts/state_machine/AnimatedState.gd" type="Script" id=8]
+[ext_resource path="res://assets/Minifantasy_Dungeon_SFX/26_sword_hit_1.wav" type="AudioStream" id=9]
 [ext_resource path="res://scripts/state_machine/AttackState.gd" type="Script" id=10]
 [ext_resource path="res://scripts/character_bits/Hitbox.gd" type="Script" id=11]
 [ext_resource path="res://scenes/character_bits/SpeechBubble.tscn" type="PackedScene" id=13]
@@ -32,12 +33,30 @@ height = 26.0
 radius = 37.2746
 height = 54.2264
 
-[node name="KingPig" type="KinematicBody2D" groups=["Enemy"]]
+[sub_resource type="Curve" id=26]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="ParticlesMaterial" id=28]
+flag_disable_z = true
+spread = 152.69
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 446.28
+initial_velocity_random = 0.61
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.5
+scale_curve = SubResource( 27 )
+
+[node name="KingPig" type="KinematicBody2D" groups=["Enemy", "King"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource( 2 )
 drop = ExtResource( 4 )
-king_level = 3
+king_level = 4
 health = 5
 speed = 120
 attack_range = 80
@@ -92,11 +111,13 @@ animation = "land"
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( 8 )
+animation = "fall"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "attack"
+frame = 3
 playing = true
 offset = Vector2( -3, -6 )
 
@@ -126,6 +147,18 @@ shape = SubResource( 25 )
 
 [node name="SpeechBubble" parent="." instance=ExtResource( 13 )]
 visible = false
+
+[node name="ParrySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+pitch_scale = 4.0
+
+[node name="ParryParticle" type="Particles2D" parent="."]
+position = Vector2( -62, -37 )
+emitting = false
+amount = 28
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 28 )
 
 [connection signal="attack_landed" from="Hitbox" to="StateMachine/Attack" method="_on_Hitbox_attack_landed"]
 [connection signal="body_entered" from="Hitbox" to="Hitbox" method="_on_Hitbox_body_entered"]
