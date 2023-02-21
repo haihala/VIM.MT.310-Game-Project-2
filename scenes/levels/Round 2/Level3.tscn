@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/level_objects/BossFightTrigger.gd" type="Script" id=1]
-[ext_resource path="res://scenes/level_objects/Round 1/KingPig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/level_objects/Round 2/KingPig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/level_objects/Generic/TileMap.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
