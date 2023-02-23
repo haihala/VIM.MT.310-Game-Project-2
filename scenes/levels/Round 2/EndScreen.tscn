@@ -17,20 +17,20 @@ margin_bottom = 192.0
 bbcode_enabled = true
 bbcode_text = "[center]Here again[/center]
 
-[center]I'm impressed[/center]"
+[center]Maybe it wasn't so pointless after all[/center]"
 text = "Here again
 
-I'm impressed"
+Maybe it wasn't so pointless after all"
 
 [node name="Diamond" parent="." instance=ExtResource( 1 )]
-position = Vector2( 292, 36 )
+position = Vector2( 288, 32 )
 new_scene = ExtResource( 3 )
 
 [node name="DiamondText" type="RichTextLabel" parent="Diamond"]
-margin_left = -149.0
-margin_top = 62.0
-margin_right = 178.0
-margin_bottom = 142.0
+margin_left = -160.0
+margin_top = 72.0
+margin_right = 167.0
+margin_bottom = 152.0
 bbcode_enabled = true
-bbcode_text = "[center]The only choice is pointless repetition[/center]"
-text = "The only choice is pointless repetition"
+bbcode_text = "[center]Ready for more pointless repetition?[/center]"
+text = "Ready for more pointless repetition?"

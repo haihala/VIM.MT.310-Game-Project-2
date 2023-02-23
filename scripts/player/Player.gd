@@ -27,6 +27,9 @@ func _ready():
 	state_machine.set_state($StateMachine/Idle)
 
 func _physics_process (delta):
+	if prompt_open():
+		return
+
 	if not is_dead():
 		handle_landing()
 		handle_falling()
@@ -162,4 +165,6 @@ func animation_finished():
 	if state_after_animation:
 		state_machine.set_state(state_after_animation)
 		state_after_animation = null
-		
+
+func prompt_open():
+	return len(get_tree().get_nodes_in_group("Prompt")) > 0

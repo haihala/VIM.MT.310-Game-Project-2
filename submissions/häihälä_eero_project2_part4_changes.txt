@@ -29,6 +29,12 @@ Animations were from the kings and pigs pack.
 
 Added a king pig as a boss. Assets were from the previously listed sources.
 
+# Start screen
+
+Added a start screen that begrudgingly allows you to play the game. I'd like to clarify that I'm not against you playing the game, the game is.
+
+Made you exit out of it by pressing the left arrow, as that will make your character move into the tutorial diamond.
+
 # Levels
 
 - Added a start screen that lets you pick a level

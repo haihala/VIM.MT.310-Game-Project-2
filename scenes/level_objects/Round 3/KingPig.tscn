@@ -117,7 +117,7 @@ animation = "fall"
 scale = Vector2( 4, 4 )
 frames = ExtResource( 1 )
 animation = "charge_attack"
-frame = 1
+frame = 4
 playing = true
 offset = Vector2( -3, -6 )
 

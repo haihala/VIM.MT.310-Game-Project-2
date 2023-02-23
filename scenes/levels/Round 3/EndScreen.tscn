@@ -15,12 +15,12 @@ margin_top = 112.0
 margin_right = 52.0
 margin_bottom = 192.0
 bbcode_enabled = true
-bbcode_text = "[center]And yet again[/center]
+bbcode_text = "[center]That ought to be enough for now[/center]
 
-[center]I'm warning you[/center]"
-text = "And yet again
+[center]Just close the game now[/center]"
+text = "That ought to be enough for now
 
-I'm warning you"
+Just close the game now"
 
 [node name="Diamond" parent="." instance=ExtResource( 1 )]
 position = Vector2( 292, 36 )

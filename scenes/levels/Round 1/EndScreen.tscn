@@ -15,10 +15,10 @@ margin_top = 112.0
 margin_right = 52.0
 margin_bottom = 192.0
 bbcode_enabled = true
-bbcode_text = "[center]The game is over and nothing has changed[/center]
+bbcode_text = "[center]That was tolerable, right?[/center]
 
 [center]Were you entertained?[/center]"
-text = "The game is over and nothing has changed
+text = "That was tolerable, right?
 
 Were you entertained?"
 
@@ -27,10 +27,10 @@ position = Vector2( 292, 36 )
 new_scene = ExtResource( 3 )
 
 [node name="DiamondText" type="RichTextLabel" parent="Diamond"]
-margin_left = -149.0
-margin_top = 62.0
-margin_right = 178.0
-margin_bottom = 142.0
+margin_left = -164.0
+margin_top = 68.0
+margin_right = 163.0
+margin_bottom = 148.0
 bbcode_enabled = true
 bbcode_text = "[center]The only choice is pointless repetition[/center]"
 text = "The only choice is pointless repetition"
